@@ -6,14 +6,20 @@
   <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
+   html, body {
       height: 100%;
-      overflow: hidden;
-      background: black;
-      font-family: 'Dancing Script', cursive;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
+
+    body {
+      margin: 0;
+      font-family: 'Dancing Script', cursive;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+
 
     .stars {
       position: fixed;
