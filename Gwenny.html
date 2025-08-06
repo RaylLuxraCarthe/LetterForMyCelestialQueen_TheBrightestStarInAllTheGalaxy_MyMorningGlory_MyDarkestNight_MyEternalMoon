@@ -2,22 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>To My Celestial Queen</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To the Celestial Queen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: black;
+      overflow-y: scroll;
       font-family: 'Dancing Script', cursive;
-      color: #2e2e2e;
-      overflow-y: auto; /* Enable page vertical scroll */
+      background: radial-gradient(ellipse at top, #0b0c1b 0%, #000000 100%);
+      color: #fceaff;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .stars {
@@ -25,192 +31,141 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      overflow: hidden;
       pointer-events: none;
+      background: transparent;
     }
 
-    .heart {
+    .star {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: pink;
-      clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
-      animation: float 10s infinite ease-in-out;
-      opacity: 0.8;
+      clip-path: path('M 0 2 C 0 -3 4 -3 4 2 C 4 -3 8 -3 8 2 C 8 5 4 8 4 8 C 4 8 0 5 0 2 Z');
+      opacity: 0.7;
+      animation: twinkle 5s infinite ease-in-out;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.6) rotate(0deg);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1) rotate(360deg);
-        opacity: 0;
-      }
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
     }
 
-    .container {
+    .content {
       position: relative;
-      z-index: 1;
-      padding: 2rem 1rem;
-      max-width: 700px;
-      margin: 3rem auto;
+      z-index: 2;
+      padding: 4rem 2rem 12rem;
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
+      font-size: 1.5rem;
+      line-height: 2.2rem;
     }
 
-    .button {
-      font-size: 1.6rem;
-      padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 1rem;
-      background-color: #ffefef;
+    .reveal {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid pink;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
       cursor: pointer;
-      font-family: inherit;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
-      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      transition: background 0.3s ease;
     }
 
-    .button:hover {
-      background-color: #ffd6d6;
+    .reveal:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .letter {
       display: none;
-      opacity: 0;
-      transition: opacity 2.5s ease-in;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 1.2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      font-size: 1.6rem;
-      line-height: 2.6rem;
-      color: #2e2e2e;
-      padding: 2.5rem;
-      max-height: 70vh; /* Limit height */
-      overflow-y: auto; /* Enable vertical scroll */
-      margin: auto;
-      text-align: left;
+      margin-top: 2rem;
+      animation: fadeIn 2s ease;
     }
 
-    .signature {
-      margin-top: 2rem;
-      text-align: right;
-      font-style: italic;
+    .bottom-glow {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .glow-heart {
+      width: 30px;
+      height: 30px;
+      background: pink;
+      clip-path: path('M 0 7.5 C 0 -6 15 -6 15 7.5 C 15 -6 30 -6 30 7.5 C 30 18 15 30 15 30 C 15 30 0 18 0 7.5 Z');
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.7),
+                  0 0 60px rgba(255, 182, 193, 0.5),
+                  0 0 90px rgba(255, 182, 193, 0.3);
+      animation: pulse 3s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
     }
 
     audio {
-      margin-top: 2rem;
-      width: 100%;
-      outline: none;
-    }
-
-    /* Optional: Scrollbar styling for letter */
-    .letter::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .letter::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 182, 193, 0.6);
-      border-radius: 4px;
+      display: none;
     }
   </style>
 </head>
-
 <body>
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="your-music-link.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Heart Stars -->
   <div class="stars" id="stars"></div>
 
-  <div class="container">
-    <button class="button" onclick="revealLetter()">Click to Reveal the Stars</button>
-    <div class="letter" id="letter" tabindex="0">
-      <p>My dearest Celestial Queen,</p>
-
-      <p>
-        Under this canopy of stars — each one softly glowing like a whisper
-        from my soul — I write these words for you.
-      </p>
-
-      <p>
-        Each heart-shaped light above mirrors the way your love has lit the
-        vast constellations of my existence.
-      </p>
-
-      <p>
-        You are the moon to my tides, the fate in my signs, the gentle pull of
-        destiny when all else feels adrift.
-      </p>
-
-      <p>
-        This letter is not just a note — it is a constellation of thoughts,
-        strung together in the shape of you.
-      </p>
-
-      <p>
-        Even the stars blink slower when I think of your smile. Time pauses —
-        not out of fear, but reverence.
-      </p>
-
-      <p>
-        You are my mystery and my map, my storm and my sanctuary. A celestial
-        force I orbit around, willingly lost and joyously found.
-      </p>
-
-      <p>
-        Every heartbeat, a star. Every breath, a galaxy. And every moment I get
-        to love you — an entire universe reborn.
-      </p>
-
-      <p>
-        And if someday we forget all else, let this page remain — a frozen
-        moment in eternity, where I said what I feel most clearly.
-      </p>
-
-      <p>
-        That I love you — not just as a man loves a woman, but as the cosmos
-        loves the void. Without condition. Without end.
-      </p>
-
-      <div class="signature">
-        Eternally yours,<br />
-        Your Lord of Shadow and Light
-      </div>
-
-      <audio controls>
-        <source
-          src="https://www.bensound.com/bensound-music/bensound-love.mp3"
-          type="audio/mpeg"
-        />
-        Your browser does not support the audio element.
-      </audio>
+  <!-- Main Content -->
+  <div class="content">
+    <h1>To My Celestial Queen</h1>
+    <p class="reveal" onclick="document.querySelector('.letter').style.display = 'block'; this.style.display='none';">Click to Reveal</p>
+    
+    <div class="letter">
+      <p>My dearest starlight,</p>
+      <p>1. You are the constellation my soul was always destined to chart.</p>
+      <p>2. Each heartbeat echoes like comets colliding in adoration for you.</p>
+      <p>3. In your gaze, I find galaxies unfolding with warmth and wonder.</p>
+      <p>4. No nebula burns brighter than your smile.</p>
+      <p>5. Through meteor storms and solar flares, my love remains unshaken.</p>
+      <p>6. The cosmos whispers your name in every silent night.</p>
+      <p>7. Each second without you is like a star collapsing into longing.</p>
+      <p>8. Our love writes myths that even the gods would envy.</p>
+      <p>9. I would walk through space-time loops to hear you laugh again.</p>
+      <p>10. This letter is but the first stardust in the universe I will write for you.</p>
     </div>
   </div>
 
+  <!-- Glowing Hearts at Bottom -->
+  <div class="bottom-glow" aria-hidden="true">
+    <div class="glow-heart"></div>
+    <div class="glow-heart"></div>
+    <div class="glow-heart"></div>
+    <div class="glow-heart"></div>
+    <div class="glow-heart"></div>
+  </div>
+
+  <!-- Heart Stars Generator -->
   <script>
-    function revealLetter() {
-      const letter = document.getElementById('letter');
-      letter.style.display = 'block';
-      setTimeout(() => {
-        letter.style.opacity = 1;
-        letter.focus(); // For keyboard accessibility
-      }, 100);
+    const starContainer = document.getElementById("stars");
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      starContainer.appendChild(star);
     }
-
-    function spawnHearts() {
-      const container = document.getElementById('stars');
-      for (let i = 0; i < 70; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = `${Math.random() * 100}%`;
-        heart.style.animationDuration = `${8 + Math.random() * 12}s`;
-        heart.style.animationDelay = `${Math.random() * 5}s`;
-        container.appendChild(heart);
-      }
-    }
-
-    spawnHearts();
   </script>
 </body>
 </html>
