@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To My Celestial Queen</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <style>
+    /* Base styles */
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 3rem;
+      box-sizing: border-box;
+    }
+
+    /* Input & Button Styles */
+    .code-input,
+    .button {
+      font-family: inherit;
+      font-size: 1.6rem;
+      padding: 1rem 2.5rem;
+      margin: 1rem 0.5rem;
+      border-radius: 1rem;
+      border: none;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .code-input {
+      background-color: #fff;
+      color: #2e2e2e;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      outline-offset: 2px;
+    }
+
+    .button {
+      background-color: #ffefef;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
+    }
+
+    .button:hover,
+    .button:focus {
+      background-color: #ffd6d6;
+      outline: none;
+    }
+
+    /* Letter styles */
+    .letter {
+      display: none;
+      opacity: 0;
+      transition: opacity 2.5s ease-in;
+      max-width: 700px;
+      margin: 2rem auto 0 auto;
+      padding: 2.5rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 1.2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      color: #2e2e2e;
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      word-break: break-word;
+      box-sizing: border-box;
+    }
+
+    .signature {
+      margin-top: 2rem;
+      text-align: right;
+      font-style: italic;
+      font-size: 1.4rem;
+    }
+
+    /* Hide audio player */
+    audio {
+      display: none !important;
+    }
+
+    /* Responsive styles for mobile */
+    @media (max-width: 600px) {
+      body {
+        font-size: 5vw;
+      }
+
+      .container {
+        padding: 1.5rem 1rem;
+      }
+
+      .code-input,
+      .button {
+        font-size: 5vw;
+        padding: 1rem 1.5rem;
+        max-width: 100%;
+        margin: 1rem 0;
+      }
+
+      .letter {
+        font-size: 5vw;
+        line-height: 1.6em;
+        max-width: 95%;
+        padding: 1.5rem;
+      }
+
+      .signature {
+        font-size: 4vw;
+      }
+
+      .heart {
+        width: 6px;
+        height: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" src="https://www.bensound.com/bensound-music/bensound-love.mp3" preload="auto" loop></audio>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <input
+      class="code-input"
+      type="text"
+      id="code"
+      placeholder="Enter code to reveal (e.g., 070524)"
+      aria-label="Enter code to reveal the letter"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    <button class="button" onclick="revealLetter()" aria-label="Reveal the letter">Click to Reveal the Stars</button>
+
+    <div class="letter" id="letter" role="region" aria-live="polite" aria-atomic="true" tabindex="0">
+      <p>My dearest Celestial Queen,</p>
+      <p>Under this canopy of stars — each one softly glowing like a whisper from my soul — I write these words for you.</p>
+      <p>Each heart-shaped light above mirrors the way your love has lit the vast constellations of my existence.</p>
+      <p>You are the moon to my tides, the fate in my signs, the gentle pull of destiny when all else feels adrift.</p>
+      <p>This letter is not just a note — it is a constellation of thoughts, strung together in the shape of you.</p>
+      <p>Even the stars blink slower when I think of your smile. Time pauses — not out of fear, but reverence.</p>
+      <p>You are my mystery and my map, my storm and my sanctuary. A celestial force I orbit around, willingly lost and joyously found.</p>
+      <p>Every heartbeat, a star. Every breath, a galaxy. And every moment I get to love you — an entire universe reborn.</p>
+      <p>And if someday we forget all else, let this page remain — a frozen moment in eternity, where I said what I feel most clearly.</p>
+      <p>That I love you — not just as a man loves a woman, but as the cosmos loves the void. Without condition. Without end.</p>
+
+      <div class="signature">
+        Eternally yours,<br />
+        Your Lord of Shadow and Light
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function revealLetter() {
+      const code = document.getElementById('code').value.trim();
+      const correctCode = '070524';
+      const letter = document.getElementById('letter');
+      const music = document.getElementById('bg-music');
+      const button = document.querySelector('.button');
+      const input = document.querySelector('.code-input');
+
+      if (code === correctCode) {
+        letter.style.display = 'block';
+        setTimeout(() => {
+          letter.style.opacity = 1;
+          letter.focus();
+        }, 100);
+        button.style.display = 'none';
+        input.style.display = 'none';
+        music.volume = 0.5;
+        music.play().catch(err => console.log("Autoplay blocked:", err));
+      } else {
+        alert('Incorrect code, my Celestial Queen. Please try again.');
+      }
+    }
+
+    function spawnHearts() {
+      const container = document.getElementById("stars");
+      for (let i = 0; i < 70; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${8 + Math.random() * 12}s`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(heart);
+      }
+    }
+
+    spawnHearts();
+  </script>
+
+</body>
+</html>
