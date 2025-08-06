@@ -4,47 +4,112 @@
   <meta charset="UTF-8">
   <title>To My Celestial Queen</title>
   <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
   <style>
     body {
       background-color: #fefbf6;
       color: #2e2e2e;
-      font-family: 'Georgia', serif;
+      font-family: 'Dancing Script', cursive;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      overflow: hidden;
     }
+
+    .container {
+      text-align: center;
+    }
+
+    .button {
+      font-size: 1.5rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 1rem;
+      background-color: #e0dcdc;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #c4bebe;
+    }
+
     .letter {
-      max-width: 600px;
+      display: none;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      max-width: 700px;
+      margin: auto;
       padding: 2rem;
       background-color: #ffffff;
-      border: 1px solid #ddd;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       border-radius: 1rem;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+      font-size: 1.4rem;
+      line-height: 2.2rem;
     }
-    .letter p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
+
     .signature {
       margin-top: 2rem;
       text-align: right;
       font-style: italic;
     }
+
+    audio {
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
+
 <body>
-  <div class="letter">
-    <p>
-      My dearest Celestial Queen,<br><br>
-      In the silence of the night and the stillness of thought, I found myself wishing to express even just a fragment of what you mean to me. This humble page, blank but for my heart’s whisper, is a quiet testament to your grace in my life.<br><br>
-      You are my starlight, my ever-gentle flame — the one I write for even in my stillest hours.<br><br>
-    </p>
-    <div class="signature">
-      Forever yours,<br>
-      Your Lord of Shadow and Light
+
+  <div class="container">
+    <button class="button" onclick="revealLetter()">Click to Reveal</button>
+
+    <div class="letter" id="letter">
+      <p>My dearest Celestial Queen,</p>
+
+      <p>In the stillness of the stars and the hush between breaths, I find myself compelled to write you this quiet offering. It is not filled with grandeur, but with the soft weight of sincerity.</p>
+
+      <p>You have been the lighthouse to my wandering vessel, the warmth in my ever-shifting skies.</p>
+
+      <p>Each day I spend with you is a story I never tire of rereading, a poem I keep reciting in the chambers of my mind.</p>
+
+      <p>Even silence feels like music when it is shared in your presence. And when I am alone, it is the echo of your name that brings me calm.</p>
+
+      <p>Sometimes I wonder if the stars envy the way I look at you. Or perhaps, they simply nod in approval, knowing that even their brilliance is humbled by your soul.</p>
+
+      <p>You are both the dream and the reason I wish to stay awake. You are both the spark and the sanctuary.</p>
+
+      <p>May this humble page be a quiet mirror of what you are to me — rare, radiant, and resolute.</p>
+
+      <p>I write this not to impress you, but to bare the quiet truth of my heart: I am yours, in the most human and most divine sense possible.</p>
+
+      <p>Always and endlessly,</p>
+
+      <div class="signature">
+        Your Lord of Shadow and Light
+      </div>
+
+      <audio controls>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
   </div>
+
+  <script>
+    function revealLetter() {
+      const letter = document.getElementById("letter");
+      letter.style.display = "block";
+      setTimeout(() => {
+        letter.style.opacity = 1;
+      }, 100); // slight delay to trigger fade-in
+    }
+  </script>
+
 </body>
 </html>
