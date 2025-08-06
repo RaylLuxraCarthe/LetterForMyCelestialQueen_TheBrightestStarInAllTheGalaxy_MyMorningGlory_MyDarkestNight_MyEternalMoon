@@ -5,51 +5,87 @@
   <title>To My Celestial Queen</title>
   <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-
   <style>
-    body {
-      background-color: #fefbf6;
-      color: #2e2e2e;
-      font-family: 'Dancing Script', cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       overflow: hidden;
     }
 
+    .heart {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     .container {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
     .button {
-      font-size: 1.5rem;
-      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      padding: 1rem 2.5rem;
       border: none;
       border-radius: 1rem;
-      background-color: #e0dcdc;
+      background-color: #ffefef;
       cursor: pointer;
       font-family: inherit;
       transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
     }
 
     .button:hover {
-      background-color: #c4bebe;
+      background-color: #ffd6d6;
     }
 
     .letter {
       display: none;
       opacity: 0;
-      transition: opacity 2s ease-in;
+      transition: opacity 2.5s ease-in;
       max-width: 700px;
       margin: auto;
-      padding: 2rem;
-      background-color: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-      font-size: 1.4rem;
-      line-height: 2.2rem;
+      padding: 2.5rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 1.2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      color: #2e2e2e;
     }
 
     .signature {
@@ -59,45 +95,49 @@
     }
 
     audio {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 
 <body>
 
+  <div class="stars" id="stars"></div>
+
   <div class="container">
-    <button class="button" onclick="revealLetter()">Click to Reveal</button>
+    <div>
+      <button class="button" onclick="revealLetter()">Click to Reveal the Stars</button>
+      <div class="letter" id="letter">
+        <p>My dearest Celestial Queen,</p>
 
-    <div class="letter" id="letter">
-      <p>My dearest Celestial Queen,</p>
+        <p>Under this canopy of stars — each one softly glowing like a whisper from my soul — I write these words for you.</p>
 
-      <p>In the stillness of the stars and the hush between breaths, I find myself compelled to write you this quiet offering. It is not filled with grandeur, but with the soft weight of sincerity.</p>
+        <p>Each heart-shaped light above mirrors the way your love has lit the vast constellations of my existence.</p>
 
-      <p>You have been the lighthouse to my wandering vessel, the warmth in my ever-shifting skies.</p>
+        <p>You are the moon to my tides, the fate in my signs, the gentle pull of destiny when all else feels adrift.</p>
 
-      <p>Each day I spend with you is a story I never tire of rereading, a poem I keep reciting in the chambers of my mind.</p>
+        <p>This letter is not just a note — it is a constellation of thoughts, strung together in the shape of you.</p>
 
-      <p>Even silence feels like music when it is shared in your presence. And when I am alone, it is the echo of your name that brings me calm.</p>
+        <p>Even the stars blink slower when I think of your smile. Time pauses — not out of fear, but reverence.</p>
 
-      <p>Sometimes I wonder if the stars envy the way I look at you. Or perhaps, they simply nod in approval, knowing that even their brilliance is humbled by your soul.</p>
+        <p>You are my mystery and my map, my storm and my sanctuary. A celestial force I orbit around, willingly lost and joyously found.</p>
 
-      <p>You are both the dream and the reason I wish to stay awake. You are both the spark and the sanctuary.</p>
+        <p>Every heartbeat, a star. Every breath, a galaxy. And every moment I get to love you — an entire universe reborn.</p>
 
-      <p>May this humble page be a quiet mirror of what you are to me — rare, radiant, and resolute.</p>
+        <p>And if someday we forget all else, let this page remain — a frozen moment in eternity, where I said what I feel most clearly.</p>
 
-      <p>I write this not to impress you, but to bare the quiet truth of my heart: I am yours, in the most human and most divine sense possible.</p>
+        <p>That I love you — not just as a man loves a woman, but as the cosmos loves the void. Without condition. Without end.</p>
 
-      <p>Always and endlessly,</p>
+        <div class="signature">
+          Eternally yours,<br>
+          Your Lord of Shadow and Light
+        </div>
 
-      <div class="signature">
-        Your Lord of Shadow and Light
+        <audio controls>
+          <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
       </div>
-
-      <audio controls>
-        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
     </div>
   </div>
 
@@ -107,8 +147,22 @@
       letter.style.display = "block";
       setTimeout(() => {
         letter.style.opacity = 1;
-      }, 100); // slight delay to trigger fade-in
+      }, 100);
     }
+
+    function spawnHearts() {
+      const container = document.getElementById("stars");
+      for (let i = 0; i < 70; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${8 + Math.random() * 12}s`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(heart);
+      }
+    }
+
+    spawnHearts();
   </script>
 
 </body>
