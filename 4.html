@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>To My Celestial Queen</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
   <style>
-    /* Base styles */
     html, body {
-      height: 100%;
       margin: 0;
-      overflow-y: auto;
-      scroll-behavior: smooth;
+      padding: 0;
+      height: 100%;
+      font-family: 'Dancing Script', cursive;
       background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
       color: white;
-      font-family: 'Dancing Script', cursive;
+      scroll-behavior: smooth;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     .stars {
@@ -62,109 +59,62 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 2rem 1rem;
       text-align: center;
-      padding: 2rem 3rem;
-      box-sizing: border-box;
     }
 
-    /* Input & Button Styles */
     .code-input,
     .button {
-      font-family: inherit;
-      font-size: 1.6rem;
-      padding: 1rem 2.5rem;
-      margin: 1rem 0.5rem;
-      border-radius: 1rem;
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.8rem;
       border: none;
-      transition: background-color 0.3s ease;
-      box-sizing: border-box;
-      max-width: 400px;
-      width: 100%;
-    }
-
-    .code-input {
-      background-color: #fff;
-      color: #2e2e2e;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-      outline-offset: 2px;
+      font-family: inherit;
+      margin: 1rem 0;
+      width: 80%;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
     }
 
     .button {
       background-color: #ffefef;
+      color: #000;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
     }
 
-    .button:hover,
-    .button:focus {
+    .button:hover {
       background-color: #ffd6d6;
-      outline: none;
     }
 
-    /* Letter styles */
+    .code-input {
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+    }
+
     .letter {
       display: none;
       opacity: 0;
       transition: opacity 2.5s ease-in;
-      max-width: 700px;
-      margin: 2rem auto 0 auto;
-      padding: 2.5rem;
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #222;
+      padding: 2rem;
+      margin-top: 2rem;
       border-radius: 1.2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      color: #2e2e2e;
-      font-size: 1.6rem;
-      line-height: 2.6rem;
-      word-break: break-word;
-      box-sizing: border-box;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      max-width: 90%;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
     }
 
     .signature {
       margin-top: 2rem;
-      text-align: right;
       font-style: italic;
-      font-size: 1.4rem;
+      text-align: right;
     }
 
-    /* Hide audio player */
     audio {
-      display: none !important;
-    }
-
-    /* Responsive styles for mobile */
-    @media (max-width: 600px) {
-      body {
-        font-size: 5vw;
-      }
-
-      .container {
-        padding: 1.5rem 1rem;
-      }
-
-      .code-input,
-      .button {
-        font-size: 5vw;
-        padding: 1rem 1.5rem;
-        max-width: 100%;
-        margin: 1rem 0;
-      }
-
-      .letter {
-        font-size: 5vw;
-        line-height: 1.6em;
-        max-width: 95%;
-        padding: 1.5rem;
-      }
-
-      .signature {
-        font-size: 4vw;
-      }
-
-      .heart {
-        width: 6px;
-        height: 6px;
-      }
+      display: none;
     }
   </style>
 </head>
@@ -175,20 +125,10 @@
   <div class="stars" id="stars"></div>
 
   <div class="container">
-    <input
-      class="code-input"
-      type="text"
-      id="code"
-      placeholder="Enter code to reveal (e.g., 070524)"
-      aria-label="Enter code to reveal the letter"
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      spellcheck="false"
-    />
-    <button class="button" onclick="revealLetter()" aria-label="Reveal the letter">Click to Reveal the Stars</button>
+    <input class="code-input" type="text" id="code" placeholder="Enter code to reveal (e.g., 070524)" />
+    <button class="button" onclick="revealLetter()">Click to Reveal the Stars</button>
 
-    <div class="letter" id="letter" role="region" aria-live="polite" aria-atomic="true" tabindex="0">
+    <div class="letter" id="letter">
       <p>My dearest Celestial Queen,</p>
       <p>Under this canopy of stars — each one softly glowing like a whisper from my soul — I write these words for you.</p>
       <p>Each heart-shaped light above mirrors the way your love has lit the vast constellations of my existence.</p>
@@ -220,12 +160,18 @@
         letter.style.display = 'block';
         setTimeout(() => {
           letter.style.opacity = 1;
-          letter.focus();
         }, 100);
         button.style.display = 'none';
         input.style.display = 'none';
+
+        // Play music only after interaction
         music.volume = 0.5;
-        music.play().catch(err => console.log("Autoplay blocked:", err));
+        const playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            console.log("Mobile autoplay prevented, waiting for further interaction.");
+          });
+        }
       } else {
         alert('Incorrect code, my Celestial Queen. Please try again.');
       }
@@ -245,6 +191,5 @@
 
     spawnHearts();
   </script>
-
 </body>
 </html>
