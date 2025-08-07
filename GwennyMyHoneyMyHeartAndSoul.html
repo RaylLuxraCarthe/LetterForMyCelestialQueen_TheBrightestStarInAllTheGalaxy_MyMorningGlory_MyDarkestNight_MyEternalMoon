@@ -116,6 +116,31 @@
     audio {
       display: none;
     }
+
+    #font-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.2s ease;
+      padding: 0.25rem;
+      line-height: 1;
+    }
+
+     #font-toggle:hover {
+      transform: scale(1.2);
+    }
+
+   @media (max-width: 600px) {
+    #font-toggle {
+      font-size: 2.2rem;
+      top: 0.8rem;
+      left: 0.8rem;
+   }
   </style>
 </head>
 <body>
@@ -132,7 +157,7 @@
          Remember this always Raph. You love Gwen forever and always.     
     -->
       
-      <p><b>To You My Queen</b></p>
+      <p><span style="font-size: 22px;"><b>To You My Queen</b></span></p>
       <br>
       <p>My Dearest Honey,</p>
       <p>No words can describe my everlasting love for you.</p>
@@ -151,12 +176,21 @@
       <p>You who love sweets, mecha anime, and cutesy whoopsy stuff.</p>
       <br>
       <p>That's enough of describing you for now, you get the picture and it's entirety already my lovely honey.</p>
+      <p>Just to clarify as well honey you're the only one with access to this, cuz I know how much you like your cutie little secrets and all that.</p>
+      <p>One more thing, don't expect something like this from me for a while or ever again, because you're the first and last person who'll ever see this.</p>
+      <p>I want it to be. Honey ever since that day with Airalyn, Caryl, Ellyca, Nathalie, and Judith, I've never actually been the same.</p>
+      <p>My faults my efforts just reduced to nothing more, but I wanted to do this for you and only you.</p>
+      <p>Hoping this is my last, I'm sorry if I'm not the type to show you any effort that much or just do anything that might spark us.</p>
+      <p>I'm just broken as we've talked about on and on before. You who deserve the world my honey, I guess what I'm trying to say is, be patient with me.</p>
+      <br>
+      <p>Who knows if this is my first or even my last letter like this, but you know it's fun to keep it like this.</p>
+      <p>That's all I'm trying to say, I'll try to make this as detailed and intricate as possible for you.</p>
+      <p></p>
 
 
 
 
-
-
+      
 
       
       <p>Each heart-shaped light above mirrors the way your love has lit the vast constellations of my existence.</p>
@@ -174,7 +208,8 @@
       </div>
     </div>
   </div>
-
+  
+   <button id="font-toggle" title="Toggle Font">❤️</button>
    <audio id="celestial-audio" preload="auto" loop></audio>
 
 <script>
@@ -235,6 +270,14 @@
 
   window.addEventListener("load", () => {
     audioPlayer.src = playlist[0];
+  });
+  
+  const toggleButton = document.getElementById("font-toggle");
+  let usingTimes = false;
+
+  toggleButton.addEventListener("click", () => {
+    document.body.style.fontFamily = usingTimes ? "" : "'Times New Roman', Times, serif";
+    usingTimes = !usingTimes;
   });
   
   </script>
