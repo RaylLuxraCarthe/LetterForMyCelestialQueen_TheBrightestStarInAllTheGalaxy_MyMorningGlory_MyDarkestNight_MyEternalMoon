@@ -121,44 +121,31 @@
       position: fixed;
       top: 1rem;
       left: 1rem;
-      background: transparent;
+      background: none;
       border: none;
-      font-size: 1.8rem;
+      font-size: 3rem;
       cursor: pointer;
-      z-index: 9999;
-      padding: 0.25rem;
-      line-height: 1;
-      position: relative;
-    }
-
-    font-toggle .tooltip-text {
-      visibility: hidden;
-      opacity: 0;
-      width: 90px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 4px 6px;
-      position: absolute;
       z-index: 10000;
-      top: -2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: opacity 0.3s ease;
-      font-size: 0.7rem;
-      pointer-events: none;
+      transition: transform 0.2s ease;
+      user-select: none;
     }
 
-    font-toggle:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
+    font-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 600px) {
+    font-toggle {
+      font-size: 3.5rem;
+      top: 0.7rem;
+      left: 0.7rem;
+    }
     }
   </style>
 </head>
 <body>
   
-  <button id="font-toggle">❤️<span class="tooltip-text">Change Font Style</span></button>
+  <button id="font-toggle" title="Change font">💖</button>
   <div class="stars" id="stars"></div>
 
   <div class="container">
