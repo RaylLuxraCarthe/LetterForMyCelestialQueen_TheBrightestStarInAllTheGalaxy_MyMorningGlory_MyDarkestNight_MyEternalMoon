@@ -177,67 +177,67 @@
 
    <audio id="celestial-audio" preload="auto" loop></audio>
 
-  <script>
-      function revealLetter() {
-      const code = document.getElementById('code').value.trim();
-      const correctCode = '070524';
-      const letter = document.getElementById('letter');
-      const music = document.getElementById('celestial-theme');
-      const button = document.querySelector('.button');
-      const input = document.querySelector('.code-input');
-      
-    const playlist = [
-      "assets/Theme-of-The-Celestial-Queen-I.mp3",
-      "assets/Theme-of-The-Celestial-Queen-II.mp3",
-      "assets/Theme-of-The-Celestial-Queen-III.mp3"
-    ];
+<script>
+  const playlist = [
+    "assets/Theme-of-The-Celestial-Queen-I.mp3",
+    "assets/Theme-of-The-Celestial-Queen-II.mp3",
+    "assets/Theme-of-The-Celestial-Queen-III.mp3"
+  ];
 
-    const audioPlayer = document.getElementById("celestial-audio");
-    let currentTrack = 0;
+  const audioPlayer = document.getElementById("celestial-audio");
+  let currentTrack = 0;
 
-    function playTrack(index) {
-      audioPlayer.src = playlist[index];
-      audioPlayer.volume = 0.5;
-      audioPlayer.play().catch((e) => {
-      console.warn("Autoplay may be blocked until user interaction.");
-      });
-    }
-
-    audioPlayer.addEventListener("ended", () => {
-      currentTrack = (currentTrack + 1) % playlist.length;
-      playTrack(currentTrack);
+  function playTrack(index) {
+    audioPlayer.src = playlist[index];
+    audioPlayer.volume = 0.5;
+    audioPlayer.play().catch((e) => {
+      console.warn("Autoplay may be blocked until user interaction.", e);
     });
+  }
 
-    function revealLetter() {
-      document.getElementById("letter").style.display = "block";
-      playTrack(currentTrack);
-    }
+  audioPlayer.addEventListener("ended", () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    playTrack(currentTrack);
+  });
 
-    window.addEventListener("load", () => {
-      audioPlayer.src = playlist[0];
-    });
-        
-    if (code === correctCode) {
-        letter.style.display = 'block';
-        setTimeout(() => {
-          letter.style.opacity = 1;
-        }, 100);
-        button.style.display = 'none';
-        input.style.display = 'none';
-      
-    function spawnHearts() {
+  function spawnHearts() {
     const container = document.getElementById("stars");
     for (let i = 0; i < 70; i++) {
-    const heart = document.createElement("div");
+      const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.style.left = `${Math.random() * 100}%`;
       heart.style.animationDuration = `${8 + Math.random() * 12}s`;
       heart.style.animationDelay = `${Math.random() * 5}s`;
       container.appendChild(heart);
-      }
     }
+  }
 
-    spawnHearts();
-   </script>
+  function revealLetter() {
+    const code = document.getElementById('code').value.trim();
+    const correctCode = '070524';
+    const letter = document.getElementById('letter');
+    const button = document.querySelector('.button');
+    const input = document.querySelector('.code-input');
+
+    if (code === correctCode) {
+      letter.style.display = 'block';
+      setTimeout(() => {
+        letter.style.opacity = 1;
+      }, 100);
+      button.style.display = 'none';
+      input.style.display = 'none';
+      playTrack(currentTrack);
+      spawnHearts();
+    } else {
+      alert("Wrong date, my Lord. Try again.");
+    }
+  }
+
+  window.addEventListener("load", () => {
+    audioPlayer.src = playlist[0];
+  });
+  
+  </script>
+  
 </body>
 </html>
