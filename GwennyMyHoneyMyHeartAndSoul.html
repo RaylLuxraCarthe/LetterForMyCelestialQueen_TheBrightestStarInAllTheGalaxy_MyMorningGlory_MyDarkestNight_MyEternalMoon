@@ -120,8 +120,6 @@
 </head>
 <body>
 
-  <audio id="celestial-theme" preload="auto" loop></audio>
-
   <div class="stars" id="stars"></div>
 
   <div class="container">
@@ -177,8 +175,10 @@
     </div>
   </div>
 
+   <audio id="celestial-audio" preload="auto" loop></audio>
+
   <script>
-    function revealLetter() {
+      function revealLetter() {
       const code = document.getElementById('code').value.trim();
       const correctCode = '070524';
       const letter = document.getElementById('letter');
@@ -186,7 +186,7 @@
       const button = document.querySelector('.button');
       const input = document.querySelector('.code-input');
       
-      const playlist = {
+    const playlist = [
       "assets/Theme-of-The-Celestial-Queen-I.mp3",
       "assets/Theme-of-The-Celestial-Queen-II.mp3",
       "assets/Theme-of-The-Celestial-Queen-III.mp3"
@@ -195,60 +195,49 @@
     const audioPlayer = document.getElementById("celestial-audio");
     let currentTrack = 0;
 
-    // Load and play first track
     function playTrack(index) {
       audioPlayer.src = playlist[index];
+      audioPlayer.volume = 0.5;
       audioPlayer.play().catch((e) => {
-        console.warn("Autoplay blocked. You might need to click the page first.");
+      console.warn("Autoplay may be blocked until user interaction.");
       });
     }
 
-    // Automatically play next track on end
     audioPlayer.addEventListener("ended", () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       playTrack(currentTrack);
     });
 
-    // Start playlist on page load
-    window.addEventListener("load", () => {
+    function revealLetter() {
+      document.getElementById("letter").style.display = "block";
       playTrack(currentTrack);
+    }
+
+    window.addEventListener("load", () => {
+      audioPlayer.src = playlist[0];
     });
-      
-      if (code === correctCode) {
+        
+    if (code === correctCode) {
         letter.style.display = 'block';
         setTimeout(() => {
           letter.style.opacity = 1;
         }, 100);
         button.style.display = 'none';
         input.style.display = 'none';
-
-        // Play music only after interaction
-        music.load(); // Ensure it refreshes
-        music.volume = 0.5;
-        const playPromise = music.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(err => {
-            console.log("Mobile autoplay prevented, waiting for further interaction.");
-          });
-        }
-      } else {
-        alert('Incorrect code, my Celestial Queen. Please try again.');
-      }
-    }
-
+      
     function spawnHearts() {
-      const container = document.getElementById("stars");
-      for (let i = 0; i < 70; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.style.left = `${Math.random() * 100}%`;
-        heart.style.animationDuration = `${8 + Math.random() * 12}s`;
-        heart.style.animationDelay = `${Math.random() * 5}s`;
-        container.appendChild(heart);
+    const container = document.getElementById("stars");
+    for (let i = 0; i < 70; i++) {
+    const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${8 + Math.random() * 12}s`;
+      heart.style.animationDelay = `${Math.random() * 5}s`;
+      container.appendChild(heart);
       }
     }
 
     spawnHearts();
-  </script>
+   </script>
 </body>
 </html>
