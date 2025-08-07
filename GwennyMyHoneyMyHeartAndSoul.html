@@ -120,7 +120,7 @@
 </head>
 <body>
 
-  <audio id="celestial-theme" src="assets/Theme-of-The-Celestial-Queen.mp3" preload="auto" loop></audio>
+  <audio id="celestial-theme" preload="auto" loop></audio>
 
   <div class="stars" id="stars"></div>
 
@@ -185,7 +185,35 @@
       const music = document.getElementById('celestial-theme');
       const button = document.querySelector('.button');
       const input = document.querySelector('.code-input');
+      
+      const playlist = {
+      "assets/Theme-of-The-Celestial-Queen-I.mp3",
+      "assets/Theme-of-The-Celestial-Queen-II.mp3",
+      "assets/Theme-of-The-Celestial-Queen-III.mp3"
+    ];
 
+    const audioPlayer = document.getElementById("celestial-audio");
+    let currentTrack = 0;
+
+    // Load and play first track
+    function playTrack(index) {
+      audioPlayer.src = playlist[index];
+      audioPlayer.play().catch((e) => {
+        console.warn("Autoplay blocked. You might need to click the page first.");
+      });
+    }
+
+    // Automatically play next track on end
+    audioPlayer.addEventListener("ended", () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      playTrack(currentTrack);
+    });
+
+    // Start playlist on page load
+    window.addEventListener("load", () => {
+      playTrack(currentTrack);
+    });
+      
       if (code === correctCode) {
         letter.style.display = 'block';
         setTimeout(() => {
