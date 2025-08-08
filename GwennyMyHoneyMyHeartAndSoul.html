@@ -470,7 +470,7 @@
     if (!isPlaying) {
       audioPlayer.play().then(() => {
         isPlaying = true;
-        musicToggle.textContent = "⏸️";
+        musicToggle.textContent = "🔊";
       }).catch(err => {
         alert("Playback blocked. Please try again after unlocking the letter.");
         console.warn("Playback failed:", err);
