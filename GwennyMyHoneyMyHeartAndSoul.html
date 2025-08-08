@@ -115,8 +115,8 @@
       font-weight: bold;
       transition: font-size 0.6s ease;
       color: #222;
-      height: 5rem;
-      line-height: 2rem;
+      height: 3rem;
+      line-height: 1rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -125,6 +125,7 @@
       margin: 0 auto;
       cursor: default;
       user-select: none;
+      text-align: center;
     }
 
     .main-text {
@@ -135,6 +136,7 @@
       line-height: 2rem;
       margin-top: 1rem;
       color: #222;
+      text-align: center;
     }
     
     .letter.expanded .preview-text {
@@ -181,7 +183,7 @@
       box-shadow 0.6s ease,
       border-color 0.6s ease,
       transform 0.6s ease;
-      transform-origin: center center;
+      transform-origin: center;
       }
 
       .letter.expanded {
@@ -201,7 +203,7 @@
         z-index: 10;
         position: relative;
         border-radius: 1.8rem;
-        text-align: center;
+        text-align: justify;
       }
 
       .letter.expanded::-webkit-scrollbar {
