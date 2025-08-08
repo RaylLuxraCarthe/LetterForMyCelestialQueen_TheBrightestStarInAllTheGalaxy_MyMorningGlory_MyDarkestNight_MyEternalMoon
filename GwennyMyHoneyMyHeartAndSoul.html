@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,300 +7,292 @@
   <meta name="robots" content="noindex, nofollow" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Dancing Script', cursive;
-      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
-      color: white;
-      scroll-behavior: smooth;
-      overflow: hidden;
+   html, body {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+     font-family: 'Dancing Script', cursive;
+     background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+     color: white;
+     scroll-behavior: smooth;
+     overflow: hidden;
+   }
+
+   /* BACKGROUND & DECORATION ELEMENTS */
+   .stars {
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     z-index: 0;
+     overflow: hidden;
+     pointer-events: none;
+   }
+
+   .heart {
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     background: pink;
+     clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
+     animation: float 10s infinite ease-in-out;
+     opacity: 0.8;
+   }
+
+   /* ANIMATIONS */
+   @keyframes float {
+   0% {
+   transform: translateY(100vh) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1) rotate(360deg);
+    opacity: 0;
     }
+  }
 
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
+   @keyframes glowPulse {
+     0%, 100% {
+       box-shadow:
+         0 0 15px 5px rgba(255, 105, 180, 0.6),
+         0 0 30px 10px rgba(255, 20, 147, 0.4);
+     }
+     50% {
+       box-shadow:
+         0 0 25px 10px rgba(255, 105, 180, 0.9),
+         0 0 40px 15px rgba(255, 20, 147, 0.7);
+     }
+   }
 
-    .heart {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: pink;
-      clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
-      animation: float 10s infinite ease-in-out;
-      opacity: 0.8;
-    }
+   /* CONTAINER */
+   .container {
+     position: absolute;
+     inset: 0;
+     height: 100vh;
+     width: 100vw;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     z-index: 1;
+   }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.6) rotate(0deg);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1) rotate(360deg);
-        opacity: 0;
-      }
-    }
+   /* FORM INPUTS */
+   .code-input,
+   .button {
+     font-size: 1.2rem;
+     padding: 0.8rem 1.5rem;
+     border-radius: 0.8rem;
+     border: none;
+     font-family: inherit;
+     margin: 1rem 0;
+     width: 80%;
+     max-width: 300px;
+     box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+   }
 
-    @keyframes glowPulse {
-      0%, 100% {
-      box-shadow:
-      0 0 15px 5px rgba(255, 105, 180, 0.6),
-      0 0 30px 10px rgba(255, 20, 147, 0.4);
-      }
-      50% {
-      box-shadow:
-      0 0 25px 10px rgba(255, 105, 180, 0.9),
-      0 0 40px 15px rgba(255, 20, 147, 0.7);
-      }
-      }
+   .button {
+     background-color: #ffefef;
+     color: #000;
+     cursor: pointer;
+   }
 
-    .letter.expanded {
-      animation: glowPulse 5s ease-in-out infinite;
-    }
-    
-    .container {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
+   .button:hover {
+     background-color: #ffd6d6;
+   }
 
-    .code-input,
-    .button {
-      font-size: 1.2rem;
-      padding: 0.8rem 1.5rem;
-      border-radius: 0.8rem;
-      border: none;
-      font-family: inherit;
-      margin: 1rem 0;
-      width: 80%;
-      max-width: 300px;
-      box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
-    }
+   .code-input {
+     background-color: #fff;
+     color: #333;
+     text-align: center;
+   }
 
-    .button {
-      background-color: #ffefef;
-      color: #000;
-      cursor: pointer;
-    }
+   /* PREVIEW TEXT */
+   .preview-text {
+     font-size: 2rem;
+     font-weight: bold;
+     transition: font-size 0.6s ease;
+     color: #222;
+     height: 3rem;
+     line-height: 1rem;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+     width: 100%;
+     max-width: 500px;
+     margin: 0 auto;
+     cursor: default;
+     user-select: none;
+     text-align: center;
+   }
 
-    .button:hover {
-      background-color: #ffd6d6;
-    }
+   /* LETTER BASE STYLING */
+   .letter {
+     display: block;
+     opacity: 0;
+     transform: scale(0.8);
+     transition:
+        opacity 2.5s ease-in,
+        transform 1s ease-out,
+        max-width 0.6s ease,
+        padding 0.6s ease,
+        font-size 0.6s ease,
+        box-shadow 0.6s ease,
+        border-color 0.6s ease,
+        transform 0.6s ease;
+     background-color: rgba(255, 255, 255, 0.9);
+     color: #222;
+     padding: 1rem 1.5rem;
+     margin-top: 2rem;
+     border-radius: 1.2rem;
+     box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+     border: 2px solid rgba(255, 182, 193, 0.4);
+     cursor: pointer;
+     max-width: 250px;
+     font-size: 1rem;
+     line-height: 1.4rem;
+     transform-origin: left;
+   }
 
-    .code-input {
-      background-color: #fff;
-      color: #333;
-      text-align: center;
-    }
+   /* LETTER STATES */
+   .letter.expanded {
+     animation: glowPulse 5s ease-in-out infinite;
+     max-height: 80vh;
+     overflow-y: auto;
+     -webkit-overflow-scrolling: touch;
+     scrollbar-width: none;
+     -ms-overflow-style: none;
+     max-width: 650px;
+     padding: 2rem 2.5rem;
+     font-size: 1.5rem;
+     box-shadow:
+       0 0 15px 5px rgba(255, 105, 180, 0.7),
+       0 0 30px 8px rgba(255, 20, 147, 0.5);
+     border-color: #ff69b4;
+     transform: scale(1.03);
+     z-index: 10;
+     position: relative;
+     border-radius: 1.8rem;
+     text-align: center;
+   }
 
-    .preview-text {
-      font-size: 2rem;
-      font-weight: bold;
-      transition: font-size 0.6s ease;
-      color: #222;
-      height: 3rem;
-      line-height: 1rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      cursor: default;
-      user-select: none;
-      text-align: center;
-    }
+   .letter.expanded::-webkit-scrollbar {
+     display: none;
+   }
 
-    @media (max-width: 350px) {
-    .preview-text {
-      max-width: 100px;
-      font-size: 1rem;
-      }
-  
+   .letter.show {
+     display: block;
+   }
+   
+   .letter.reveal {
+     opacity: 1;
+     transform: scale(1);
+   }
 
-    .main-text {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.8s ease, max-height 0.8s ease;
-      font-size: 1.4rem;
-      line-height: 2rem;
-      margin-top: 1rem;
-      color: #222;
-      text-align: left;
-    }
-    
-    .letter.expanded .preview-text {
-      white-space: normal; 
-      font-size: 1.2rem;
-      color: #222;
-    }
+   /* LETTER TEXT */
+   .main-text {
+     display: none;
+     opacity: 0;
+     transition: opacity 0.8s ease, max-height 0.8s ease;
+     font-size: 1.4rem;
+     line-height: 2rem;
+     margin-top: 1rem;
+     color: #222;
+     text-align: left;
+   }
 
-    .letter.expanded .main-text {
-      display: block; 
-      opacity: 1;
-    }
+   .letter.expanded .preview-text {
+     white-space: normal;
+     font-size: 1.2rem;
+     color: #222;
+   }
 
-    .letter.show {
-      display: block;
-    }
+   .letter.expanded .main-text {
+     display: block;
+     opacity: 1;
+   }
 
-    .letter.reveal {
-      opacity: 1;
-      transform: scale(1);
-    }
+   /* SIGNATURE */
+   .signature {
+     margin-top: 2rem;
+     font-style: italic;
+     text-align: right;
+   }
 
-    .letter {
-      display: block;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 2.5s ease-in, transform 1s ease-out;
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #222;
-      padding: 1rem 1.5rem;
-      margin-top: 2rem;
-      border-radius: 1.2rem;
-      box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-      border: 2px solid rgba(255, 182, 193, 0.4);
-      cursor: pointer;
-      max-width: 250px;
-      font-size: 1rem;
-      line-height: 1.4rem;
-      overflow: hidden;
-      transition:
-      max-width 0.6s ease,
-      padding 0.6s ease,
-      font-size 0.6s ease,
-      box-shadow 0.6s ease,
-      border-color 0.6s ease,
-      transform 0.6s ease;
-      transform-origin: left;
-      }
+   /* AUDIO HIDDEN */
+   .audio {
+     display: none;
+   }
 
-      .letter.expanded {
-        max-height: 80vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        max-width: 650px;
-        padding: 2rem 2.5rem;
-        font-size: 1.5rem;
-        box-shadow:
-        0 0 15px 5px rgba(255, 105, 180, 0.7),
-        0 0 30px 8px rgba(255, 20, 147, 0.5);
-        border-color: #ff69b4;
-        transform: scale(1.03);
-        z-index: 10;
-        position: relative;
-        border-radius: 1.8rem;
-        text-align: center;
-      }
+   /* ICON BUTTONS */
+   #font-toggle,
+   #music-toggle {
+     position: fixed;
+     background: transparent;
+     border: none;
+     color: pink;
+     outline: none;
+     cursor: pointer;
+     z-index: 10000;
+     transition: transform 0.2s ease;
+     padding: 0;
+     line-height: 1;
+   }
 
-      .letter.expanded::-webkit-scrollbar {
-        display: none;
-      }
+   #font-toggle {
+     top: 1rem;
+     left: 1rem;
+     font-size: 5rem;
+   }
 
-    @media (max-width: 600px) {
-    .letter {
-      max-width: 322px;
-      padding: 0.6rem 1rem 0.6rem 1rem;
-      font-size: 0.9rem;
-      }
-  
-      .letter.expanded {
-        max-width: 500px;
-        padding: 1.5rem 2rem;
-        font-size: 1.1rem;
-      }
-      }
+   #font-toggle:hover,
+   #music-toggle:hover {
+     transform: scale(1.2);
+   }
 
-    .signature {
-      margin-top: 2rem;
-      font-style: italic;
-      text-align: right;
-    }
+   #music-toggle {
+     top: 7rem;
+     left: 2rem;
+     font-size: 2.5rem;
+     color: #ff8dc7;
+   }
 
-    .audio {
-      display: none;
-    }
+   /* MEDIA QUERIES */
+   @media (max-width: 600px) {
+  .letter {
+    max-width: 322px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
 
-    #font-toggle {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background: transparent;
-      border: none;
-      color: pink;
-      outline: none;
-      font-size: 5rem;
-      cursor: pointer;
-      z-index: 10000;
-      transition: transform 0.2s ease;
-      user-select: none;
-      padding: 0;
-      line-height: 1;
-    }
+  .letter.expanded {
+    max-width: 500px;
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+  }
 
-    #font-toggle:hover {
-      transform: scale(1.2);
-    }
+  #font-toggle {
+    font-size: 3.5rem;
+    top: 0.7rem;
+    left: 0.7rem;
+  }
 
-    #font-toggle:focus {
-      outline: none;
-      box-shadow: none;
-    }
+  #music-toggle {
+    font-size: 2rem;
+    top: 5rem;
+    left: 0.8rem;
+  }
+}
 
-    @media (max-width: 600px) {
-      #font-toggle {
-        font-size: 3.5rem;
-        top: 0.7rem;
-        left: 0.7rem;
-      }
-    }
-
-    #music-toggle {
-      position: fixed;
-      top: 7rem;
-      left: 2rem;
-      font-size: 2.5rem;
-      background: transparent;
-      border: none;
-      color: #ff8dc7;
-      cursor: pointer;
-      z-index: 10000;
-      transition: transform 0.2s ease;
-      padding: 0;
-      line-height: 1;
-    }
-
-    #music-toggle:hover {
-      transform: scale(1.3);
-    }
-
-    @media (max-width: 600px) {
-      #music-toggle {
-        font-size: 2rem;
-        top: 5rem;
-        left: 0.8rem;
-      }
-    }
+@media (max-width: 350px) {
+  .preview-text {
+    max-width: 100px;
+    font-size: 1rem;
+  }
+}
   </style>
 </head>
 <body>
