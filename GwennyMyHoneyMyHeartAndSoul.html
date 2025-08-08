@@ -338,35 +338,53 @@
     }
   }
 
-  function revealLetter() {
-    const code = document.getElementById('code').value.trim();
-    const correctCode = '070524';
-    const letter = document.getElementById('letter');
-    const button = document.querySelector('.button');
-    const input = document.querySelector('.code-input');
+  function playTrack(index) {
+  audioPlayer.src = playlist[index];
+  audioPlayer.volume = 0.5;
 
-    if (code === correctCode) {
-      letter.style.display = 'block';
-      setTimeout(() => {
-        letter.style.opacity = 1;
-      }, 100);
-      button.style.display = 'none';
-      input.style.display = 'none';
-      playTrack(currentTrack);
-      spawnHearts();
-    } else {
-      alert("Wrong date, my Lord. Try again.");
-    }
+  // Mobile-friendly direct play
+  const playPromise = audioPlayer.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      console.log("Music started");
+    }).catch(error => {
+      console.warn("Audio playback failed: ", error);
+    });
+  }
   }
 
-  window.addEventListener("load", () => {
+  function revealLetter() {
+  const code = document.getElementById('code').value.trim();
+  const correctCode = '070524';
+  const letter = document.getElementById('letter');
+  const button = document.querySelector('.button');
+  const input = document.querySelector('.code-input');
+
+  if (code === correctCode) {
+    letter.style.display = 'block';
+    setTimeout(() => {
+      letter.style.opacity = 1;
+    }, 100);
+
+    button.style.display = 'none';
+    input.style.display = 'none';
+
+
+    playTrack(currentTrack);
+    spawnHearts();
+  } else {
+    alert("Wrong date, my Lord. Try again.");
+  }
+  }
+
+    window.addEventListener("load", () => {
     audioPlayer.src = playlist[0];
   });
   
   const toggleButton = document.getElementById("font-toggle");
   let usingTimes = false;
 
-  toggleButton.addEventListener("click", () => {
+    toggleButton.addEventListener("click", () => {
     document.body.style.fontFamily = usingTimes ? "" : "'Times New Roman', Times, serif";
     usingTimes = !usingTimes;
   });
