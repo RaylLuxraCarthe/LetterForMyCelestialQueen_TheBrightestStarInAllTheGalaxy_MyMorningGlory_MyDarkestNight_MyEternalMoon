@@ -51,6 +51,23 @@
       }
     }
 
+    @keyframes glowPulse {
+      0%, 100% {
+      box-shadow:
+      0 0 15px 5px rgba(255, 105, 180, 0.6),
+      0 0 30px 10px rgba(255, 20, 147, 0.4);
+      }
+      50% {
+      box-shadow:
+      0 0 25px 10px rgba(255, 105, 180, 0.9),
+      0 0 40px 15px rgba(255, 20, 147, 0.7);
+      }
+      }
+
+    .letter.expanded {
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    
     .container {
       position: relative;
       z-index: 1;
