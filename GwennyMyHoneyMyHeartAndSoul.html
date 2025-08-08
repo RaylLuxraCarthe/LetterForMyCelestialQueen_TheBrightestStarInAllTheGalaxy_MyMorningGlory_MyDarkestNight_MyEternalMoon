@@ -117,6 +117,42 @@
       transform: scale(1);
     }
 
+    .letter {
+      cursor: pointer;
+      max-width: 300px;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      padding: 1rem 1.5rem;
+      border-radius: 1.2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #222;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+      border: 2px solid rgba(255, 182, 193, 0.4);
+      transition:
+      max-width 0.6s ease,
+      padding 0.6s ease,
+      font-size 0.6s ease,
+      box-shadow 0.6s ease,
+      border-color 0.6s ease,
+      transform 0.6s ease;
+      transform-origin: center center;
+      overflow: hidden;
+    }
+
+    .letter.expanded {
+      max-width: 700px;
+      padding: 3rem 4rem;
+      font-size: 1.6rem;
+      box-shadow:
+      0 0 20px 5px rgba(255, 105, 180, 0.8),
+      0 0 40px 10px rgba(255, 20, 147, 0.6);
+      border-color: #ff69b4;
+      transform: scale(1.05);
+      z-index: 10;
+      position: relative;
+      border-radius: 2rem;
+    }
+
     .signature {
       margin-top: 2rem;
       font-style: italic;
@@ -269,17 +305,22 @@
       }
     }
 
-    window.addEventListener("load", () => {
+      window.addEventListener("load", () => {
       audioPlayer.src = playlist[0];
     });
 
     const toggleButton = document.getElementById("font-toggle");
     let usingTimes = false;
 
-    toggleButton.addEventListener("click", () => {
+      toggleButton.addEventListener("click", () => {
       document.body.style.fontFamily = usingTimes ? "" : "'Times New Roman', Times, serif";
       usingTimes = !usingTimes;
     });
+    
+    const letter = document.getElementById('letter');
+      letter.addEventListener('click', () => {
+      letter.classList.toggle('expanded');
+});
   </script>
 </body>
 </html>
