@@ -186,6 +186,8 @@
       max-height: 80vh;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       max-width: 700px;
       padding: 3rem 4rem;
       font-size: 1.5rem;
@@ -198,7 +200,11 @@
       position: relative;
       border-radius: 2rem;
     }
-
+    
+    .letter.expanded::-webkit-scrollbar {
+      display: none;
+    }
+  
     .signature {
       margin-top: 2rem;
       font-style: italic;
