@@ -1,188 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To My Celestial Queen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to bottom, #000814, #001d3d);
-        overflow: hidden;
-        font-family: 'Dancing Script', cursive;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To My Celestial Queen</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Dancing Script', cursive;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.6) rotate(0deg);
+        opacity: 0;
       }
-
-      .heart {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: pink;
-        transform: rotate(45deg);
-        animation: float 10s linear infinite;
+      50% {
+        opacity: 0.9;
       }
-
-      .heart::before,
-      .heart::after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: pink;
-        border-radius: 50%;
+      100% {
+        transform: translateY(-10vh) scale(1) rotate(360deg);
+        opacity: 0;
       }
+    }
 
-      .heart::before {
-        top: -5px;
-        left: 0;
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .code-input,
+    .button {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.8rem;
+      border: none;
+      font-family: inherit;
+      margin: 1rem 0;
+      width: 80%;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+    }
+
+    .button {
+      background-color: #ffefef;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #ffd6d6;
+    }
+
+    .code-input {
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+    }
+
+    .letter {
+      display: none;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 2.5s ease-in, transform 1s ease-out;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #222;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      max-width: 90%;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+    }
+
+    .letter.show {
+      display: block;
+    }
+
+    .letter.reveal {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .signature {
+      margin-top: 2rem;
+      font-style: italic;
+      text-align: right;
+    }
+
+    audio {
+      display: none;
+    }
+
+    #font-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: none;
+      color: pink;
+      outline: none;
+      font-size: 5rem;
+      cursor: pointer;
+      z-index: 10000;
+      transition: transform 0.2s ease;
+      user-select: none;
+      padding: 0;
+      line-height: 1;
+    }
+
+    #font-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    #font-toggle:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    @media (max-width: 600px) {
+      #font-toggle {
+        font-size: 3.5rem;
+        top: 0.7rem;
+        left: 0.7rem;
       }
+    }
 
-      .heart::after {
-        left: -5px;
-        top: 0;
+    #music-toggle {
+      position: fixed;
+      top: 7rem;
+      left: 2rem;
+      font-size: 3rem;
+      background: transparent;
+      border: none;
+      color: #ff8dc7;
+      cursor: pointer;
+      z-index: 10000;
+      transition: transform 0.2s ease;
+      padding: 0;
+      line-height: 1;
+    }
+
+    #music-toggle:hover {
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 600px) {
+      #music-toggle {
+        font-size: 2rem;
+        top: 5rem;
+        left: 0.8rem;
       }
+    }
+  </style>
+</head>
+<body>
+  <button id="font-toggle" title="Change font">💖</button>
+  <button id="music-toggle" title="Toggle music">🎶</button>
+  <div class="stars" id="stars"></div>
 
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) rotate(45deg);
-        }
-        100% {
-          transform: translateY(-10vh) rotate(45deg);
-        }
-      }
+  <div class="container">
+    <input class="code-input" type="text" id="code" placeholder="The Day It All Began" />
+    <button class="button" onclick="revealLetter()">Click To Reveal</button>
 
-      .card {
-        background: #fefbf3;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        text-align: center;
-        max-width: 400px;
-        transition: all 0.5s ease-in-out;
-        cursor: pointer;
-        border: 2px solid #fff3cd;
-        backdrop-filter: blur(5px);
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      .letter-content {
-        font-size: 20px;
-        margin-top: 20px;
-        line-height: 1.6;
-        color: #222;
-      }
-
-      .button-container {
-        margin-top: 20px;
-      }
-
-      .btn {
-        padding: 10px 20px;
-        font-size: 18px;
-        border: none;
-        border-radius: 8px;
-        background-color: #ff5c8a;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .btn:hover {
-        background-color: #e14c76;
-      }
-
-      .music-control {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
-        cursor: pointer;
-      }
-
-      .music-control img {
-        width: 40px;
-        height: 40px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="music-control" onclick="toggleMusic()">
-      <img src="https://cdn-icons-png.flaticon.com/512/727/727269.png" alt="Music" />
-    </div>
-    <audio id="celestial-audio" autoplay loop></audio>
-
-    <div id="coverCard" class="card" onclick="revealLetter()">
-      <h2>To You My Queen</h2>
-      <p>Eternally yours,<br />Honey</p>
-    </div>
-
-    <div id="letterCard" class="card hidden">
-      <h2>To You My Celestial Queen</h2>
-      <div class="letter-content">
-        <p>My dearest love,</p>
-        <p>This letter is a testament to the depths of my affection and the gravity of your grace...</p>
-        <p>You are my dawn and my starlight.</p>
-        <p>Always,<br />Your Honey</p>
+    <div class="letter" id="letter">
+      <p><span style="font-size: 22px;"><b>To You My Queen</b></span></p>
+      <br />
+      <div class="signature">
+        Eternally yours,<br />
+        Honey
       </div>
-      <div class="button-container">
-        <button class="btn" onclick="resetView()">Back</button>
-      </div>
     </div>
+  </div>
 
-    <script>
-      const playlist = [
-        "assets/Theme-of-The-Celestial-Queen-I.mp3",
-        "assets/Theme-of-The-Celestial-Queen-II.mp3",
-        "assets/Theme-of-The-Celestial-Queen-III.mp3"
-      ];
+  <audio id="celestial-audio" preload="auto"></audio>
 
-      let currentTrack = 0;
-      const audioPlayer = document.getElementById("celestial-audio");
+  <script>
+    const playlist = [
+      "assets/Theme-of-The-Celestial-Queen-I.mp3",
+      "assets/Theme-of-The-Celestial-Queen-II.mp3",
+      "assets/Theme-of-The-Celestial-Queen-III.mp3",
+      "assets/Final-Celestial-Symphony.mp3"
+    ];
 
-      function toggleMusic() {
-        if (audioPlayer.paused) {
-          audioPlayer.play();
-        } else {
-          audioPlayer.pause();
-        }
-      }
+    const audioPlayer = document.getElementById("celestial-audio");
+    let currentTrack = 0;
 
-      function playNextTrack() {
-        currentTrack = (currentTrack + 1) % playlist.length;
-        audioPlayer.src = playlist[currentTrack];
-        audioPlayer.play();
-      }
+    function playTrack(index) {
+      audioPlayer.src = playlist[index];
+      audioPlayer.volume = 0.5;
+      audioPlayer.play().catch(e => {
+        console.warn("Autoplay may be blocked until user interaction.", e);
+      });
+    }
 
-      audioPlayer.addEventListener("ended", playNextTrack);
-      audioPlayer.src = playlist[0];
-      audioPlayer.play();
+    audioPlayer.addEventListener("ended", () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      playTrack(currentTrack);
+    });
 
-      function revealLetter() {
-        document.getElementById("coverCard").classList.add("hidden");
-        document.getElementById("letterCard").classList.remove("hidden");
-      }
-
-      function resetView() {
-        document.getElementById("coverCard").classList.remove("hidden");
-        document.getElementById("letterCard").classList.add("hidden");
-      }
-
-      // Particle effect
-      for (let i = 0; i < 80; i++) {
+    function spawnHearts() {
+      const container = document.getElementById("stars");
+      for (let i = 0; i < 70; i++) {
         const heart = document.createElement("div");
         heart.classList.add("heart");
-        heart.style.left = `${Math.random() * 100}vw`;
-        heart.style.animationDuration = `${5 + Math.random() * 5}s`;
-        document.body.appendChild(heart);
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${8 + Math.random() * 12}s`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(heart);
       }
-    </script>
-  </body>
+    }
+
+    function revealLetter() {
+      const code = document.getElementById('code').value.trim();
+      const correctCode = '070524';
+      const letter = document.getElementById('letter');
+      const button = document.querySelector('.button');
+      const input = document.querySelector('.code-input');
+
+      if (code === correctCode) {
+        letter.classList.add('show');
+        setTimeout(() => {
+          letter.classList.add('reveal');
+        }, 50);
+
+        button.style.display = 'none';
+        input.style.display = 'none';
+
+        playTrack(currentTrack);
+        spawnHearts();
+      } else {
+        alert("Wrong date, my Lord. Try again.");
+      }
+    }
+
+    window.addEventListener("load", () => {
+      audioPlayer.src = playlist[0];
+    });
+
+    const toggleButton = document.getElementById("font-toggle");
+    let usingTimes = false;
+
+    toggleButton.addEventListener("click", () => {
+      document.body.style.fontFamily = usingTimes ? "" : "'Times New Roman', Times, serif";
+      usingTimes = !usingTimes;
+    });
+  </script>
+</body>
 </html>
