@@ -16,7 +16,7 @@
     audioPlayer.play()
       .then(() => {
         isPlaying = true;
-        musicToggle.textContent = "⏸️";
+        musicToggle.textContent = "🔊";
       })
       .catch(e => {
         console.warn("Autoplay may be blocked until user interaction.", e);
