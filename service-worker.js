@@ -1,7 +1,7 @@
 const CACHE_NAME = 'celestialqueen-v1';
 const ASSETS = [
   './',
-  './GwennyMyHoneyMyHeartAndSoul.html',
+  './index.html',
   './scripts/main.js',
   './assets/icon-192.png',
   './assets/icon-512.png',
@@ -48,7 +48,7 @@ self.addEventListener('fetch', event => {
       });
     }).catch(() => {
       // fallback: return the cached index.html (useful if offline and resource missing)
-      return caches.match('./GwennyMyHoneyMyHeartAndSoul.html');
+      return caches.match('./index.html');
     })
   );
 });
