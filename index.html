@@ -342,6 +342,45 @@
     <input class="code-input" type="text" id="code" placeholder="The Day It All Began" />
     <button class="button" onclick="revealLetter()">Click To Reveal</button>
 
+
+
+      <!-- Passcode Entry -->
+  <div id="passcode-container">
+    <input type="password" id="code" class="code-input" placeholder="Enter the date, my Lord">
+    <button class="button" id="reveal-btn">Reveal</button>
+  </div>
+
+  <!-- Preview Text + Chapters (hidden initially) -->
+  <div id="preview-container" style="display: none;">
+    <button id="preview-btn" class="preview-btn">Show Preview</button>
+    <div id="preview-text" style="display: none;">
+      <p>My Celestial Queen, a glimpse into my heart...</p>
+    </div>
+
+    <!-- Desktop: 13 Chapter Buttons -->
+    <div id="chapters-container" class="chapters-container">
+      <!-- Dynamically filled by JS -->
+    </div>
+  </div>
+
+  <!-- Mobile: Reveal Chapters Button -->
+  <div id="mobile-chapters-container" style="display: none;">
+    <button id="reveal-chapters-btn" class="chapter-reveal-btn">Reveal Chapters</button>
+    <div id="mobile-chapters" class="mobile-chapters" style="display: none;">
+      <!-- Dynamically filled by JS -->
+    </div>
+  </div>
+
+  <!-- Main Letter (hidden initially) -->
+  <div id="letter" class="letter">
+    <!-- Letter content here -->
+    <div class="letter-content">
+      <h1>To My Celestial Queen</h1>
+      <p>Your main letter content...</p>
+    </div>
+    <button id="close-letter-btn" class="close-btn" style="display: none;">Close</button>
+  </div>
+    
     <div class="letter" id="letter">
       <div class="preview-text">To You My Queen</div>
 
