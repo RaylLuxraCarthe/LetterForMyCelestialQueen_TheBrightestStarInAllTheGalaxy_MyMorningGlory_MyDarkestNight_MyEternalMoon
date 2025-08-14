@@ -220,6 +220,32 @@
      opacity: 1;
    }
 
+    #letter {
+    transition: max-height 0.5s, opacity 0.5s;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+#letter.revealed {
+    max-height: 1000px; /* enough to show full letter */
+    opacity: 1;
+}
+#letter.expanded {
+    max-height: 2000px; /* for expanded state */
+    opacity: 1;
+}
+#extra-letters {
+    transition: opacity 0.3s;
+}
+#extra-letters.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+#extra-letters.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
    /* SIGNATURE */
    .signature {
      margin-top: 2rem;
@@ -313,10 +339,12 @@
   <div class="container">
     <input class="code-input" type="text" id="code" placeholder="The Day It All Began" />
     <button class="button" onclick="revealLetter()">Click To Reveal</button>
-
-
     
-  <div id="extra-letters" style="margin-top: 2rem; display:none;">
+
+    <div class="letter" id="letter">
+    <div class="preview-text">To You My Queen</div>
+
+        <div id="extra-letters" style="margin-top: 2rem; display:none;">
   <h2 style="text-align:center;">Additional Letters</h2>
   <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
     <button onclick="openLetter(1)" class="button">Letter 1</button>
@@ -334,10 +362,6 @@
     <button onclick="openLetter(13)" class="button">Letter 13</button>
   </div>
 </div>
-    
-
-    <div class="letter" id="letter">
-    <div class="preview-text">To You My Queen</div>
 
       <div class="main-text">
       <br>
