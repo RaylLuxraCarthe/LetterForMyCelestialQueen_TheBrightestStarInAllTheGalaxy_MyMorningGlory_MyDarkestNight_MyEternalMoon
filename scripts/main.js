@@ -26,13 +26,11 @@ function playTrack(index) {
     });
 }
 
-// Auto play next track
 audioPlayer.addEventListener("ended", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   playTrack(currentTrack);
 });
 
-// Assign first track on load
 window.addEventListener("load", () => {
   audioPlayer.src = playlist[0];
 });
@@ -42,7 +40,6 @@ window.addEventListener("load", () => {
 // =======================
 const toggleButton = document.getElementById("font-toggle");
 let usingTimes = false;
-
 toggleButton.addEventListener("click", () => {
   document.body.style.fontFamily = usingTimes
     ? "'Dancing Script', cursive"
@@ -54,7 +51,6 @@ toggleButton.addEventListener("click", () => {
 // 🎼 Music Toggle
 // =======================
 const musicToggle = document.getElementById("music-toggle");
-
 musicToggle.addEventListener("click", () => {
   if (!isPlaying) {
     audioPlayer.play().then(() => {
@@ -75,7 +71,6 @@ musicToggle.addEventListener("click", () => {
 // 💌 Main Letter Reveal
 // =======================
 const letter = document.getElementById('letter');
-const extraLettersContainer = document.getElementById('extra-letters');
 
 function revealLetter() {
   const code = document.getElementById('code').value.trim();
@@ -95,18 +90,19 @@ function revealLetter() {
     playTrack(currentTrack);
     spawnHearts();
 
-    setTimeout(showExtraLetters, 1000);
+    setTimeout(() => {
+      document.getElementById('responsive-extra-letters').style.display = "block";
+      updateLetterUI(); // Make sure mobile/desktop logic is set at reveal
+    }, 1000);
   } else {
     alert("Wrong date, my Lord. Try again.");
   }
 }
 
-// Toggle letter expansion
 letter.addEventListener('click', () => {
   letter.classList.toggle('expanded');
 });
 
-// Floating hearts animation
 function spawnHearts() {
   const container = document.getElementById("stars");
   for (let i = 0; i < 70; i++) {
@@ -120,93 +116,31 @@ function spawnHearts() {
 }
 
 // =======================
-// 📜 Extra Letters System
-// =======================
-const letterData = {
-  1: { password: "pass1", hint: "Our first date's location" },
-  2: { password: "pass2", hint: "Your favourite flower" },
-  3: { password: "pass3", hint: "The song we always hum" },
-  4: { password: "pass4", hint: "Month we first met" },
-  5: { password: "pass5", hint: "Your dream travel destination" },
-  6: { password: "pass6", hint: "Pet name I call you" },
-  7: { password: "pass7", hint: "The dessert you love" },
-  8: { password: "pass8", hint: "The colour you adore" },
-  9: { password: "pass9", hint: "Where we first hugged" },
-  10: { password: "pass10", hint: "The gift I gave you" },
-  11: { password: "pass11", hint: "Your birth month" },
-  12: { password: "pass12", hint: "The café we always visit" },
-  13: { password: "pass13", hint: "The name of our future cat" }
-};
-
-function openLetter(num) {
-  const userPass = prompt(`Enter the passcode.\nHint: ${letterData[num].hint}`);
-  if (userPass === letterData[num].password) {
-    const newTab = window.open("", "_blank");
-    newTab.document.write(`
-      <html>
-      <head>
-        <title>Letter ${num} to My Queen</title>
-        <style>
-          body {
-            font-family: 'Dancing Script', cursive;
-            background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000 100%);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
-            text-align: center;
-          }
-          .letter-content {
-            background-color: rgba(255,255,255,0.9);
-            color: #222;
-            padding: 2rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-            max-width: 600px;
-            line-height: 1.8rem;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="letter-content">
-          <h2>Letter ${num}</h2>
-          <p>My love, this is the message for Letter ${num}.</p>
-          <p>You can replace this text with the real heartfelt words for this specific letter.</p>
-          <p style="margin-top:2rem;font-style:italic;">— Your Eternal Lord</p>
-        </div>
-      </body>
-      </html>
-    `);
-    newTab.document.close();
-  } else {
-    alert("Incorrect password, my Lord.");
-  }
-}
-
-function showExtraLetters() {
-  extraLettersContainer.style.display = "block";
-}
-
-// =======================
-// 📱 Mobile/Responsive Letter Dropdown
+// 📜 Responsive Extra Letters System
 // =======================
 const additionalLetters = [
-  { id: 1, title: "Letter 1", password: "pass1", hint: "Hint 1", content: "This is additional letter 1." },
-  { id: 2, title: "Letter 2", password: "pass2", hint: "Hint 2", content: "This is additional letter 2." }
+  { id: 1, title: "Letter 1", password: "pass1", hint: "Our first date's location", content: "This is additional letter 1." },
+  { id: 2, title: "Letter 2", password: "pass2", hint: "Your favourite flower", content: "This is additional letter 2." },
+  { id: 3, title: "Letter 3", password: "pass3", hint: "The song we always hum", content: "This is additional letter 3." },
+  { id: 4, title: "Letter 4", password: "pass4", hint: "Month we first met", content: "This is additional letter 4." },
+  { id: 5, title: "Letter 5", password: "pass5", hint: "Your dream travel destination", content: "This is additional letter 5." },
+  { id: 6, title: "Letter 6", password: "pass6", hint: "Pet name I call you", content: "This is additional letter 6." },
+  { id: 7, title: "Letter 7", password: "pass7", hint: "The dessert you love", content: "This is additional letter 7." },
+  { id: 8, title: "Letter 8", password: "pass8", hint: "The colour you adore", content: "This is additional letter 8." },
+  { id: 9, title: "Letter 9", password: "pass9", hint: "Where we first hugged", content: "This is additional letter 9." },
+  { id: 10, title: "Letter 10", password: "pass10", hint: "The gift I gave you", content: "This is additional letter 10." },
+  { id: 11, title: "Letter 11", password: "pass11", hint: "Your birth month", content: "This is additional letter 11." },
+  { id: 12, title: "Letter 12", password: "pass12", hint: "The café we always visit", content: "This is additional letter 12." },
+  { id: 13, title: "Letter 13", password: "pass13", hint: "The name of our future cat", content: "This is additional letter 13." }
 ];
 
 function isMobile() {
   return window.innerWidth <= 600;
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const showBtn = document.getElementById('show-letters-btn');
-  const dropdown = document.getElementById('letters-dropdown');
+function populateLetters() {
   const lettersList = document.getElementById('letters-list');
-  const inlineContent = document.getElementById('inline-letter-content');
-
+  lettersList.innerHTML = ""; // Clear previous if any
   additionalLetters.forEach(letter => {
     const btn = document.createElement('button');
     btn.className = "button";
@@ -214,7 +148,7 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.onclick = () => {
       const pass = prompt(`Enter the passcode.\nHint: ${letter.hint}`);
       if (pass === letter.password) {
-        inlineContent.innerHTML = `
+        document.getElementById('inline-letter-content').innerHTML = `
           <div class="additional-letter">
             <h3>${letter.title}</h3>
             <p>${letter.content}</p>
@@ -226,7 +160,17 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     lettersList.appendChild(btn);
   });
+}
 
+function updateLetterUI() {
+  const showBtn = document.getElementById('show-letters-btn');
+  const dropdown = document.getElementById('letters-dropdown');
+  if (!document.getElementById('responsive-extra-letters').style.display || document.getElementById('responsive-extra-letters').style.display === "none") {
+    // Don't show anything until main letter is revealed
+    showBtn.style.display = "none";
+    dropdown.style.display = "none";
+    return;
+  }
   if (isMobile()) {
     showBtn.style.display = "block";
     dropdown.style.display = "none";
@@ -238,19 +182,14 @@ window.addEventListener('DOMContentLoaded', () => {
     dropdown.style.display = "block";
     showBtn.style.display = "none";
   }
+  populateLetters();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  updateLetterUI();
 });
 
-window.addEventListener('resize', () => {
-  const showBtn = document.getElementById('show-letters-btn');
-  const dropdown = document.getElementById('letters-dropdown');
-  if (isMobile()) {
-    dropdown.style.display = "none";
-    showBtn.style.display = "block";
-  } else {
-    dropdown.style.display = "block";
-    showBtn.style.display = "none";
-  }
-});
+window.addEventListener('resize', updateLetterUI);
 
 // =======================
 // ⚙ Service Worker
