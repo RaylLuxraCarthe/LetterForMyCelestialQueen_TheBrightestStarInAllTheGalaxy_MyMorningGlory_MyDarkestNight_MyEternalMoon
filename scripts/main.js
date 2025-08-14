@@ -201,6 +201,31 @@ revealLetter = function() {
     originalRevealLetter();
   }
 };
+
+  const letter = document.getElementById('letter');
+const extraLetters = document.getElementById('extra-letters');
+
+// When revealing the letter
+function revealLetter() {
+    // ... your existing reveal logic ...
+    letter.classList.add('revealed');
+    setTimeout(() => {
+        extraLetters.classList.add('visible');
+        extraLetters.style.display = 'block';
+    }, 500); // after transition
+}
+
+// Toggle expand/collapse
+letter.addEventListener('click', function() {
+    const isExpanded = letter.classList.toggle('expanded');
+    if (isExpanded) {
+        extraLetters.classList.remove('visible');
+        extraLetters.classList.add('hidden');
+    } else {
+        extraLetters.classList.remove('hidden');
+        extraLetters.classList.add('visible');
+    }
+});
 }
 
 
