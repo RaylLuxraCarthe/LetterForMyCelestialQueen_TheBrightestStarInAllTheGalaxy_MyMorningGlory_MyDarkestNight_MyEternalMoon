@@ -11,347 +11,356 @@
   <link rel="apple-touch-icon" href="assets/icon-512.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <style>
-   html, body {
-     margin: 0;
-     padding: 0;
-     height: 100%;
-     font-family: 'Dancing Script', cursive;
-     background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
-     color: white;
-     scroll-behavior: smooth;
-     overflow: hidden;
-   }
-
-   /* BACKGROUND & DECORATION ELEMENTS */
-   .stars {
-     position: fixed;
-     width: 100%;
-     height: 100%;
-     z-index: 0;
-     overflow: hidden;
-     pointer-events: none;
-   }
-
-   .heart {
-     position: absolute;
-     width: 10px;
-     height: 10px;
-     background: pink;
-     clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
-     animation: float 10s infinite ease-in-out;
-     opacity: 0.8;
-   }
-
-   /* ANIMATIONS */
-   @keyframes float {
-   0% {
-   transform: translateY(100vh) scale(0.6) rotate(0deg);
-    opacity: 0;
+ <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Dancing Script', cursive;
+    background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+    color: white;
+    scroll-behavior: smooth;
+    overflow: hidden;
   }
-  50% {
-    opacity: 0.9;
+
+  /* BACKGROUND & DECORATION ELEMENTS */
+  .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
-  100% {
-    transform: translateY(-10vh) scale(1) rotate(360deg);
-    opacity: 0;
+
+  .heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: pink;
+    clip-path: path('M 0 2.5 C 0 -2 5 -2 5 2.5 C 5 -2 10 -2 10 2.5 C 10 6 5 10 5 10 C 5 10 0 6 0 2.5 Z');
+    animation: float 10s infinite ease-in-out;
+    opacity: 0.8;
+  }
+
+  /* ANIMATIONS */
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) scale(0.6) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1) rotate(360deg);
+      opacity: 0;
     }
   }
 
-   @keyframes glowPulse {
-     0%, 100% {z
-       box-shadow:
-         0 0 15px 5px rgba(255, 105, 180, 0.6),
-         0 0 30px 10px rgba(255, 20, 147, 0.4);
-     }
-     50% {
-       box-shadow:
-         0 0 25px 10px rgba(255, 105, 180, 0.9),
-         0 0 40px 15px rgba(255, 20, 147, 0.7);
-     }
-   }
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow:
+        0 0 15px 5px rgba(255, 105, 180, 0.6),
+        0 0 30px 10px rgba(255, 20, 147, 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 25px 10px rgba(255, 105, 180, 0.9),
+        0 0 40px 15px rgba(255, 20, 147, 0.7);
+    }
+  }
 
-   /* CONTAINER */
-   .container {
-     position: absolute;
-     inset: 0;
-     height: 100vh;
-     width: 100vw;
-     overflow: hidden;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     z-index: 1;
-   }
+  /* CONTAINER */
+  .container {
+    position: absolute;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
 
-   /* FORM INPUTS */
-   .code-input,
-   .button {
-     font-size: 1.2rem;
-     padding: 0.8rem 1.5rem;
-     border-radius: 0.8rem;
-     border: none;
-     font-family: inherit;
-     margin: 1rem 0;
-     width: 80%;
-     max-width: 300px;
-     box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
-   }
+  /* FORM INPUTS */
+  .code-input,
+  .button {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.8rem;
+    border: none;
+    font-family: inherit;
+    margin: 1rem 0;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+  }
 
-   .button {
-     background-color: #ffefef;
-     color: #000;
-     cursor: pointer;
-   }
+  .button {
+    background-color: #ffefef;
+    color: #000;
+    cursor: pointer;
+  }
 
-   .button:hover {
-     background-color: #ffd6d6;
-   }
+  .button:hover {
+    background-color: #ffd6d6;
+  }
 
-   .code-input {
-     background-color: #fff;
-     color: #333;
-     text-align: center;
-   }
+  .code-input {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+  }
 
-   /* PREVIEW TEXT */
-   .preview-text {
-     font-size: clamp(1rem, 3vw, 2rem) !important;
-     font-weight: bold;
-     transition: font-size 0.6s ease;
-     color: #222;
-     height: auto;
-     line-height: 1rem;
-     overflow: visible;
-     white-space: normal;
-     text-overflow: unset;
-     width: 100%;
-     max-width: 500px;
-     margin: 0 auto;
-     cursor: default;
-     user-select: none;
-     text-align: center;
-   }
+  /* PREVIEW TEXT */
+  .preview-text {
+    font-size: clamp(1rem, 3vw, 2rem) !important;
+    font-weight: bold;
+    transition: font-size 0.6s ease;
+    color: #222;
+    height: auto;
+    line-height: 1rem;
+    overflow: visible;
+    white-space: normal;
+    text-overflow: unset;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    cursor: default;
+    user-select: none;
+    text-align: center;
+  }
 
-   /* LETTER BASE STYLING */
-   .letter {
-     display: block;
-     opacity: 0;
-     transform: scale(0.8);
-     transition:
-        opacity 2.5s ease-in,
-        transform 1s ease-out,
-        max-width 0.6s ease,
-        padding 0.6s ease,
-        font-size 0.6s ease,
-        box-shadow 0.6s ease,
-        border-color 0.6s ease,
-        transform 0.6s ease;
-     background-color: rgba(255, 255, 255, 0.9);
-     color: #222;
-     padding: 1rem 1.5rem;
-     margin-top: 2rem;
-     border-radius: 1.2rem;
-     box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-     border: 2px solid rgba(255, 182, 193, 0.4);
-     cursor: pointer;
-     max-width: 250px;
-     font-size: 1rem;
-     line-height: 1.4rem;
-     transform-origin: left;
-   }
+  /* LETTER BASE STYLING */
+  .letter {
+    display: block;
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 2.5s ease-in,
+      transform 1s ease-out,
+      max-width 0.6s ease,
+      padding 0.6s ease,
+      font-size 0.6s ease,
+      box-shadow 0.6s ease,
+      border-color 0.6s ease,
+      transform 0.6s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #222;
+    padding: 1rem 1.5rem;
+    margin-top: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    cursor: pointer;
+    max-width: 250px;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    transform-origin: left;
+  }
 
-   /* LETTER STATES */
-   .letter.expanded {
-     animation: glowPulse 5s ease-in-out infinite;
-     max-height: 80vh;
-     overflow-y: auto;
-     -webkit-overflow-scrolling: touch;
-     scrollbar-width: none;
-     -ms-overflow-style: none;
-     max-width: 650px;
-     padding: 2rem 2.5rem;
-     font-size: 1.5rem;
-     box-shadow:
-       0 0 15px 5px rgba(255, 105, 180, 0.7),
-       0 0 30px 8px rgba(255, 20, 147, 0.5);
-     border-color: #ff69b4;
-     transform: scale(1.03);
-     z-index: 10;
-     position: relative;
-     border-radius: 1.8rem;
-     text-align: center;
-   }
+  /* LETTER STATES */
+  .letter.expanded {
+    animation: glowPulse 5s ease-in-out infinite;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 650px;
+    padding: 2rem 2.5rem;
+    font-size: 1.5rem;
+    box-shadow:
+      0 0 15px 5px rgba(255, 105, 180, 0.7),
+      0 0 30px 8px rgba(255, 20, 147, 0.5);
+    border-color: #ff69b4;
+    transform: scale(1.03);
+    z-index: 10;
+    position: relative;
+    border-radius: 1.8rem;
+    text-align: center;
+  }
 
-   .letter.expanded::-webkit-scrollbar {
-     display: none;
-   }
+  .letter.expanded::-webkit-scrollbar {
+    display: none;
+  }
 
-   .letter.show {
-     display: block;
-   }
-   
-   .letter.reveal {
-     opacity: 1;
-     transform: scale(1);
-   }
+  .letter.show {
+    display: block;
+  }
 
-   /* LETTER TEXT */
-   .main-text {
-     display: none;
-     opacity: 0;
-     transition: opacity 0.8s ease, max-height 0.8s ease;
-     font-size: 1.4rem;
-     line-height: 2rem;
-     margin-top: 1rem;
-     color: #222;
-     text-align: left;
-   }
+  .letter.reveal {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-   .letter.expanded .preview-text {
-     white-space: normal;
-     font-size: 1.2rem;
-     color: #222;
-   }
+  /* LETTER TEXT */
+  .main-text {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease, max-height 0.8s ease;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    margin-top: 1rem;
+    color: #222;
+    text-align: left;
+  }
 
-   .letter.expanded .main-text {
-     display: block;
-     opacity: 1;
-   }
+  .letter.expanded .preview-text {
+    white-space: normal;
+    font-size: 1.2rem;
+    color: #222;
+  }
 
-    #letter {
+  .letter.expanded .main-text {
+    display: block;
+    opacity: 1;
+  }
+
+  #letter {
     transition: max-height 0.5s, opacity 0.5s;
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-}
-#letter.revealed {
-    max-height: 1000px; /* enough to show full letter */
-    opacity: 1;
-}
-#letter.expanded {
-    max-height: 2000px; /* for expanded state */
-    opacity: 1;
-}
-#extra-letters {
-    transition: opacity 0.3s;
-}
-#extra-letters.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-#extra-letters.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-   /* SIGNATURE */
-   .signature {
-     margin-top: 2rem;
-     marbing-bottom: 2rem;
-     font-style: italic;
-     text-align: right;
-   }
-
-   /* AUDIO HIDDEN */
-   .audio {
-     display: none;
-   }
-
-   /* ICON BUTTONS */
-   #font-toggle,
-   #music-toggle {
-     position: fixed;
-     background: transparent;
-     border: none;
-     color: pink;
-     outline: none;
-     cursor: pointer;
-     z-index: 10000;
-     transition: transform 0.2s ease;
-     padding: 0;
-     line-height: 1;
-   }
-
-   #font-toggle {
-     top: 1rem;
-     left: 1rem;
-     font-size: 5rem;
-   }
-
-   #font-toggle:hover,
-   #music-toggle:hover {
-     transform: scale(1.2);
-   }
-
-   #music-toggle {
-     top: 7rem;
-     left: 2rem;
-     font-size: 2.5rem;
-     color: #ff8dc7;
-   }
-
-   /* MEDIA QUERIES */
-   @media (max-width: 600px) {
-  .letter {
-    max-width: 322px;
-    padding: 0.6rem 1rem;
-    font-size: 0.75rem;
   }
 
-  .letter.expanded {
-    max-width: 500px;
-    padding: 1.5rem 2rem;
-    font-size: 0.75rem;
+  #letter.revealed {
+    max-height: 1000px;
+    opacity: 1;
+  }
+
+  #letter.expanded {
+    max-height: 2000px;
+    opacity: 1;
+  }
+
+  #extra-letters {
+    transition: opacity 0.3s;
+  }
+
+  #extra-letters.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #extra-letters.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* SIGNATURE */
+  .signature {
+    margin-top: 2rem;
+    marbing-bottom: 2rem;
+    font-style: italic;
+    text-align: right;
+  }
+
+  /* AUDIO HIDDEN */
+  .audio {
+    display: none;
+  }
+
+  /* ICON BUTTONS */
+  #font-toggle,
+  #music-toggle {
+    position: fixed;
+    background: transparent;
+    border: none;
+    color: pink;
+    outline: none;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.2s ease;
+    padding: 0;
+    line-height: 1;
   }
 
   #font-toggle {
-    font-size: 3.5rem;
-    top: 0.7rem;
-    left: 0.7rem;
+    top: 1rem;
+    left: 1rem;
+    font-size: 5rem;
+  }
+
+  #font-toggle:hover,
+  #music-toggle:hover {
+    transform: scale(1.2);
   }
 
   #music-toggle {
-    font-size: 2rem;
-    top: 5rem;
-    left: 0.8rem;
+    top: 7rem;
+    left: 2rem;
+    font-size: 2.5rem;
+    color: #ff8dc7;
   }
-}
 
-@media (max-width: 350px) {
-  .preview-text {
-    max-width: 300px;
-    font-size: 1.5rem;
-    margin: 0 auto;
-    display: block;
-  }
-}
-
-    .additional-letter {
-  background: #e3f2fd;
-  color: #222;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px 0 rgba(33, 150, 243, 0.1);
-  padding: 1.5em;
-  margin: 1em auto;
-  max-width: 350px;
-  font-size: 1.15em;
-  transition: box-shadow 0.3s;
-}
-.additional-letter:active,
-.additional-letter:focus {
-  box-shadow: 0 4px 20px 0 rgba(33, 150, 243, 0.16);
-}
-@media only screen and (max-width: 600px) {
-  #show-letters-btn { display: block !important; }
-  #letters-dropdown { background: rgba(227,242,253,0.97); border-radius: 24px; padding: 1em; }
-}
+  /* MEDIA QUERIES */
+  @media (max-width: 600px) {
+    .letter {
+      max-width: 322px;
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
     }
-  </style>
+    .letter.expanded {
+      max-width: 500px;
+      padding: 1.5rem 2rem;
+      font-size: 0.75rem;
+    }
+    #font-toggle {
+      font-size: 3.5rem;
+      top: 0.7rem;
+      left: 0.7rem;
+    }
+    #music-toggle {
+      font-size: 2rem;
+      top: 5rem;
+      left: 0.8rem;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .preview-text {
+      max-width: 300px;
+      font-size: 1.5rem;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  .additional-letter {
+    background: #e3f2fd;
+    color: #222;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px 0 rgba(33, 150, 243, 0.1);
+    padding: 1.5em;
+    margin: 1em auto;
+    max-width: 350px;
+    font-size: 1.15em;
+    transition: box-shadow 0.3s;
+  }
+
+  .additional-letter:active,
+  .additional-letter:focus {
+    box-shadow: 0 4px 20px 0 rgba(33, 150, 243, 0.16);
+  }
+
+  @media only screen and (max-width: 600px) {
+    #show-letters-btn {
+      display: block !important;
+    }
+    #letters-dropdown {
+      background: rgba(227, 242, 253, 0.97);
+      border-radius: 24px;
+      padding: 1em;
+    }
+  }
+</style>
+
 </head>
 <body>
-
   <!-- Created August 7th, Given on the 20th of August -->
   <button id="font-toggle" title="Change font">💖</button>
   <button id="music-toggle" title="Toggle music">🎶</button>
@@ -360,48 +369,48 @@
   <div class="container">
     <input class="code-input" type="text" id="code" placeholder="The Day It All Began" />
     <button class="button" onclick="revealLetter()">Click To Reveal</button>
-    
 
     <div class="letter" id="letter">
-    <div class="preview-text">To You My Queen</div>
+      <div class="preview-text">To You My Queen</div>
 
-        <div id="extra-letters" style="margin-top: 2rem; display:none;">
-  <h2 style="text-align:center;">Additional Letters</h2>
-  <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
-    <button onclick="openLetter(1)" class="button">Letter 1</button>
-    <button onclick="openLetter(2)" class="button">Letter 2</button>
-    <button onclick="openLetter(3)" class="button">Letter 3</button>
-    <button onclick="openLetter(4)" class="button">Letter 4</button>
-    <button onclick="openLetter(5)" class="button">Letter 5</button>
-    <button onclick="openLetter(6)" class="button">Letter 6</button>
-    <button onclick="openLetter(7)" class="button">Letter 7</button>
-    <button onclick="openLetter(8)" class="button">Letter 8</button>
-    <button onclick="openLetter(9)" class="button">Letter 9</button>
-    <button onclick="openLetter(10)" class="button">Letter 10</button>
-    <button onclick="openLetter(11)" class="button">Letter 11</button>
-    <button onclick="openLetter(12)" class="button">Letter 12</button>
-    <button onclick="openLetter(13)" class="button">Letter 13</button>
-  </div>
-</div>
+      <div id="extra-letters" style="margin-top: 2rem; display:none;">
+        <h2 style="text-align:center;">Additional Letters</h2>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
+          <button onclick="openLetter(1)" class="button">Letter 1</button>
+          <button onclick="openLetter(2)" class="button">Letter 2</button>
+          <button onclick="openLetter(3)" class="button">Letter 3</button>
+          <button onclick="openLetter(4)" class="button">Letter 4</button>
+          <button onclick="openLetter(5)" class="button">Letter 5</button>
+          <button onclick="openLetter(6)" class="button">Letter 6</button>
+          <button onclick="openLetter(7)" class="button">Letter 7</button>
+          <button onclick="openLetter(8)" class="button">Letter 8</button>
+          <button onclick="openLetter(9)" class="button">Letter 9</button>
+          <button onclick="openLetter(10)" class="button">Letter 10</button>
+          <button onclick="openLetter(11)" class="button">Letter 11</button>
+          <button onclick="openLetter(12)" class="button">Letter 12</button>
+          <button onclick="openLetter(13)" class="button">Letter 13</button>
+        </div>
+      </div>
 
       <!-- Additional Letters Section -->
-<div id="additional-letters-section">
-  <!-- Mobile: button to show letters -->
-  <button id="show-letters-btn" class="button" style="display:none;margin:1em 0;">Show Additional Letters</button>
-  
-  <!-- Dropdown/modal for mobile, inline for desktop -->
-  <div id="letters-dropdown" style="display:none;">
-    <h2 style="text-align:center;">Additional Letters</h2>
-    <div id="letters-list" style="display:flex;flex-wrap:wrap;gap:1em;justify-content:center;">
-      <!-- JS will populate buttons here -->
-    </div>
-  </div>
-  
-  <!-- Where the letter content appears inline -->
-  <div id="inline-letter-content" style="margin-top:1.5em;"></div>
-</div>
+      <div id="additional-letters-section">
+        <!-- Mobile: button to show letters -->
+        <button id="show-letters-btn" class="button" style="display:none;margin:1em 0;">Show Additional Letters</button>
+        
+        <!-- Dropdown/modal for mobile, inline for desktop -->
+        <div id="letters-dropdown" style="display:none;">
+          <h2 style="text-align:center;">Additional Letters</h2>
+          <div id="letters-list" style="display:flex;flex-wrap:wrap;gap:1em;justify-content:center;">
+            <!-- JS will populate buttons here -->
+          </div>
+        </div>
+        
+        <!-- Where the letter content appears inline -->
+        <div id="inline-letter-content" style="margin-top:1.5em;"></div>
+      </div>
 
       <div class="main-text">
+
       <br>
       <p>My Dearest Honey,</p>
       <p>No words can describe my everlasting love for you.</p>
