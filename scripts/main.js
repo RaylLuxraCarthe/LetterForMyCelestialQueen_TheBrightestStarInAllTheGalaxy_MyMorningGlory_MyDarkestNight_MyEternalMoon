@@ -226,6 +226,73 @@ letter.addEventListener('click', function() {
         extraLetters.classList.add('visible');
     }
 });
+
+  // Additional letters data (example, replace with your actual content and passwords)
+const additionalLetters = [
+  { id: 1, title: "Letter 1", password: "pass1", hint: "Hint 1", content: "This is additional letter 1." },
+  { id: 2, title: "Letter 2", password: "pass2", hint: "Hint 2", content: "This is additional letter 2." },
+  // Add more as needed
+];
+
+// Detect mobile
+function isMobile() {
+  return window.innerWidth <= 600;
+}
+
+// Setup additional letters UI
+window.addEventListener('DOMContentLoaded', () => {
+  const showBtn = document.getElementById('show-letters-btn');
+  const dropdown = document.getElementById('letters-dropdown');
+  const lettersList = document.getElementById('letters-list');
+  const inlineContent = document.getElementById('inline-letter-content');
+  
+  // Populate letter buttons
+  additionalLetters.forEach(letter => {
+    const btn = document.createElement('button');
+    btn.className = "button";
+    btn.textContent = letter.title;
+    btn.onclick = () => {
+      const pass = prompt(`Enter the passcode.\nHint: ${letter.hint}`);
+      if (pass === letter.password) {
+        inlineContent.innerHTML = `
+          <div class="additional-letter">
+            <h3>${letter.title}</h3>
+            <p>${letter.content}</p>
+          </div>
+        `;
+      } else {
+        alert("Incorrect password, my Lord.");
+      }
+    };
+    lettersList.appendChild(btn);
+  });
+
+  // Mobile: hide dropdown initially
+  if (isMobile()) {
+    showBtn.style.display = "block";
+    dropdown.style.display = "none";
+    showBtn.onclick = () => {
+      dropdown.style.display = "block";
+      showBtn.style.display = "none";
+    };
+  } else {
+    dropdown.style.display = "block";
+    showBtn.style.display = "none";
+  }
+});
+
+// Responsive: reset if resized between desktop/mobile
+window.addEventListener('resize', () => {
+  const showBtn = document.getElementById('show-letters-btn');
+  const dropdown = document.getElementById('letters-dropdown');
+  if (window.innerWidth <= 600) {
+    dropdown.style.display = "none";
+    showBtn.style.display = "block";
+  } else {
+    dropdown.style.display = "block";
+    showBtn.style.display = "none";
+  }
+});
 }
 
 
