@@ -19,53 +19,59 @@ function playTrack(index) {
   audioPlayer.play()
     .then(() => {
       isPlaying = true;
-      musicToggle.textContent = "🔊";
+      if (musicToggle) musicToggle.textContent = "🔊";
     })
     .catch(e => {
       console.warn("Autoplay may be blocked until user interaction.", e);
     });
 }
 
-audioPlayer.addEventListener("ended", () => {
-  currentTrack = (currentTrack + 1) % playlist.length;
-  playTrack(currentTrack);
-});
+if (audioPlayer) {
+  audioPlayer.addEventListener("ended", () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    playTrack(currentTrack);
+  });
 
-window.addEventListener("load", () => {
-  audioPlayer.src = playlist[0];
-});
+  window.addEventListener("load", () => {
+    audioPlayer.src = playlist[0];
+  });
+}
 
 // =======================
 // 🖋 Font Toggle
 // =======================
 const toggleButton = document.getElementById("font-toggle");
 let usingTimes = false;
-toggleButton.addEventListener("click", () => {
-  document.body.style.fontFamily = usingTimes
-    ? "'Dancing Script', cursive"
-    : "'Times New Roman', Times, serif";
-  usingTimes = !usingTimes;
-});
+if (toggleButton) {
+  toggleButton.addEventListener("click", () => {
+    document.body.style.fontFamily = usingTimes
+      ? "'Dancing Script', cursive"
+      : "'Times New Roman', Times, serif";
+    usingTimes = !usingTimes;
+  });
+}
 
 // =======================
 // 🎼 Music Toggle
 // =======================
 const musicToggle = document.getElementById("music-toggle");
-musicToggle.addEventListener("click", () => {
-  if (!isPlaying) {
-    audioPlayer.play().then(() => {
-      isPlaying = true;
-      musicToggle.textContent = "🔊";
-    }).catch(err => {
-      alert("Playback blocked. Please try again after unlocking the letter.");
-      console.warn("Playback failed:", err);
-    });
-  } else {
-    audioPlayer.pause();
-    isPlaying = false;
-    musicToggle.textContent = "🎶";
-  }
-});
+if (musicToggle && audioPlayer) {
+  musicToggle.addEventListener("click", () => {
+    if (!isPlaying) {
+      audioPlayer.play().then(() => {
+        isPlaying = true;
+        musicToggle.textContent = "🔊";
+      }).catch(err => {
+        alert("Playback blocked. Please try again after unlocking the letter.");
+        console.warn("Playback failed:", err);
+      });
+    } else {
+      audioPlayer.pause();
+      isPlaying = false;
+      musicToggle.textContent = "🎶";
+    }
+  });
+}
 
 // =======================
 // 💌 Main Letter Reveal
@@ -73,38 +79,45 @@ musicToggle.addEventListener("click", () => {
 const letter = document.getElementById('letter');
 
 function revealLetter() {
-  const code = document.getElementById('code').value.trim();
+  const codeInput = document.getElementById('code');
+  const code = codeInput ? codeInput.value.trim() : "";
   const correctCode = '070524';
   const button = document.querySelector('.button');
   const input = document.querySelector('.code-input');
 
   if (code === correctCode) {
-    letter.classList.add('show');
-    setTimeout(() => {
-      letter.classList.add('reveal');
-    }, 50);
+    if (letter) {
+      letter.classList.add('show');
+      setTimeout(() => {
+        letter.classList.add('reveal');
+      }, 50);
 
-    button.style.display = 'none';
-    input.style.display = 'none';
+      if (button) button.style.display = 'none';
+      if (input) input.style.display = 'none';
 
-    playTrack(currentTrack);
-    spawnHearts();
+      playTrack(currentTrack);
+      spawnHearts();
 
-    setTimeout(() => {
-      document.getElementById('responsive-extra-letters').style.display = "block";
-      updateLetterUI(); // Make sure mobile/desktop logic is set at reveal
-    }, 1000);
+      setTimeout(() => {
+        const extraLetters = document.getElementById('responsive-extra-letters');
+        if (extraLetters) extraLetters.style.display = "block";
+        // Optionally add updateLetterUI() logic here if needed.
+      }, 1000);
+    }
   } else {
     alert("Wrong date, my Lord. Try again.");
   }
 }
 
-letter.addEventListener('click', () => {
-  letter.classList.toggle('expanded');
-});
+if (letter) {
+  letter.addEventListener('click', () => {
+    letter.classList.toggle('expanded');
+  });
+}
 
 function spawnHearts() {
   const container = document.getElementById("stars");
+  if (!container) return;
   for (let i = 0; i < 70; i++) {
     const heart = document.createElement("div");
     heart.classList.add("heart");
