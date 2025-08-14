@@ -115,12 +115,10 @@ if ('serviceWorker' in navigator) {
       console.error('Service Worker registration failed:', err);
     });
   });
-}
 
 
 
-
-
+  
 // Passwords and hints for each letter
 const letterData = {
   1: { password: "pass1", hint: "Our first date's location" },
@@ -203,3 +201,9 @@ revealLetter = function() {
     originalRevealLetter();
   }
 };
+}
+
+
+
+
+
