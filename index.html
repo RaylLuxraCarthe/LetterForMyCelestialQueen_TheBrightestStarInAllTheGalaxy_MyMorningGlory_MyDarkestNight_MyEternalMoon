@@ -327,6 +327,27 @@
     display: block;
   }
 }
+
+    .additional-letter {
+  background: #e3f2fd;
+  color: #222;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(33, 150, 243, 0.1);
+  padding: 1.5em;
+  margin: 1em auto;
+  max-width: 350px;
+  font-size: 1.15em;
+  transition: box-shadow 0.3s;
+}
+.additional-letter:active,
+.additional-letter:focus {
+  box-shadow: 0 4px 20px 0 rgba(33, 150, 243, 0.16);
+}
+@media only screen and (max-width: 600px) {
+  #show-letters-btn { display: block !important; }
+  #letters-dropdown { background: rgba(227,242,253,0.97); border-radius: 24px; padding: 1em; }
+}
+    }
   </style>
 </head>
 <body>
@@ -361,6 +382,23 @@
     <button onclick="openLetter(12)" class="button">Letter 12</button>
     <button onclick="openLetter(13)" class="button">Letter 13</button>
   </div>
+</div>
+
+      <!-- Additional Letters Section -->
+<div id="additional-letters-section">
+  <!-- Mobile: button to show letters -->
+  <button id="show-letters-btn" class="button" style="display:none;margin:1em 0;">Show Additional Letters</button>
+  
+  <!-- Dropdown/modal for mobile, inline for desktop -->
+  <div id="letters-dropdown" style="display:none;">
+    <h2 style="text-align:center;">Additional Letters</h2>
+    <div id="letters-list" style="display:flex;flex-wrap:wrap;gap:1em;justify-content:center;">
+      <!-- JS will populate buttons here -->
+    </div>
+  </div>
+  
+  <!-- Where the letter content appears inline -->
+  <div id="inline-letter-content" style="margin-top:1.5em;"></div>
 </div>
 
       <div class="main-text">
