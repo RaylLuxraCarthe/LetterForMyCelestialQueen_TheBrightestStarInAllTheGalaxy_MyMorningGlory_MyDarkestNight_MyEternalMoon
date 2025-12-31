@@ -134,27 +134,34 @@
 
 
     
-    /* ADD into your existing <style> */
+/* ARCHIVES button — top-centered by default; moves to top-right and becomes 🌙 when .letter.expanded */
 .archive-btn {
   position: fixed;
+  top: 18px;
   left: 50%;
-  bottom: 22px;
   transform: translateX(-50%);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 14px;
   background: linear-gradient(90deg,#ffd6ec,#ffb0da);
   color: #330022;
-  padding: 14px 20px;
-  border-radius: 16px;
-  text-decoration: none;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
+  text-decoration: none;
+  text-align: center;
   box-shadow: 0 18px 44px rgba(255,105,180,0.16);
-  transition: transform .12s ease, opacity .18s ease, box-shadow .18s ease;
   z-index: 10001;
-  text-align:center;
+  transition: all .18s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* visible-but-disabled state (cannot be clicked until correct code entered) */
+/* label and icon slots */
+.archive-label { display: inline; line-height: 1; }
+.archive-icon { display: none; line-height: 1; font-size: 1.15rem; }
+
+/* visible-but-disabled */
 .archive-btn.disabled {
   opacity: 0.68;
   pointer-events: none;
@@ -168,11 +175,27 @@
   box-shadow: 0 26px 64px rgba(255,105,180,0.20);
 }
 
-/* for very small screens reduce width */
-@media (max-width:420px) {
-  .archive-btn { padding: 12px 16px; font-size: 0.95rem; bottom: 14px; }
+/* When the letter is expanded, move the button to top-right and swap to icon only */
+.letter.expanded ~ .archive-btn {
+  left: auto;
+  right: 18px;
+  top: 18px;
+  transform: none;
+  padding: 10px;
+  width: auto;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
+/* show icon, hide text when letter expanded */
+.letter.expanded ~ .archive-btn .archive-icon { display: inline-block; }
+.letter.expanded ~ .archive-btn .archive-label { display: none; }
+
+/* small-screen adjustments */
+@media (max-width:420px){
+  .archive-btn { padding: 10px 14px; font-size: 0.95rem; top: 14px; }
+  .letter.expanded ~ .archive-btn { right: 12px; top: 12px; padding: 8px; }
+}
 
 
 
@@ -372,7 +395,12 @@
   </style>
 </head>
 <body>
-  <a id="archives-link" class="archive-btn disabled" aria-disabled="true">Take me to the Archives</a>
+  
+  <a id="archives-link" class="archive-btn disabled" aria-disabled="true" role="button" aria-label="Open Archives">
+  <span class="archive-icon" aria-hidden="true">🌙</span>
+  <span class="archive-label">Take me to the Archives</span>
+  </a>
+  
   <button id="font-toggle" title="Change font">💖</button>
   <button id="music-toggle" title="Toggle music">🎶</button>
   <div class="stars" id="stars"></div>
