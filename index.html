@@ -435,55 +435,14 @@
       <p>You wander my mind free of toll,</p>
       <p>You who came to be, saved my life as you chose to me.</p>
       <div class="signature">
-        Eternally yours,<br />
+        Eternally yours,<br/>
         Honey
       </div>
     </div>
   </div>
 
-
-
-
-    <!--New-->
-    <!-- Buttons container is AFTER the letter so we can hide it via the sibling selector when the letter is revealed/expanded -->
-    <div class="buttons-container" aria-hidden="false">
-
-      <!-- Top row: 6 buttons -->
-      <div class="btn-grid" aria-label="Top row of quick links">
-        <a class="custom-btn" href="https://example.com/1" target="_blank" rel="noopener">Link 1</a>
-        <a class="custom-btn" href="https://example.com/2" target="_blank" rel="noopener">Link 2</a>
-        <a class="custom-btn" href="https://example.com/3" target="_blank" rel="noopener">Link 3</a>
-        <a class="custom-btn" href="https://example.com/4" target="_blank" rel="noopener">Link 4</a>
-        <a class="custom-btn" href="https://example.com/5" target="_blank" rel="noopener">Link 5</a>
-        <a class="custom-btn" href="https://example.com/6" target="_blank" rel="noopener">Link 6</a>
-      </div>
-
-      <!-- Middle row: 6 buttons -->
-      <div class="btn-grid" aria-label="Middle row of quick links" style="margin-top:8px;">
-        <a class="custom-btn" href="https://example.com/7" target="_blank" rel="noopener">Link 7</a>
-        <a class="custom-btn" href="https://example.com/8" target="_blank" rel="noopener">Link 8</a>
-        <a class="custom-btn" href="https://example.com/9" target="_blank" rel="noopener">Link 9</a>
-        <a class="custom-btn" href="https://example.com/10" target="_blank" rel="noopener">Link 10</a>
-        <a class="custom-btn" href="https://example.com/11" target="_blank" rel="noopener">Link 11</a>
-        <a class="custom-btn" href="https://example.com/12" target="_blank" rel="noopener">Link 12</a>
-      </div>
-
-      <!-- Present button -->
-      <a class="present-btn" href="https://example.com/present" target="_blank" rel="noopener" style="margin-top:8px;">Present</a>
-
-      <!-- Unlock input + open button (main.js expects #code and .button) -->
-      <div class="controls-inline" style="margin-top:8px;">
-        <input id="code" class="code-input" placeholder="Enter unlock code" aria-label="Unlock code" />
-        <!-- the button keeps class="button" because revealLetter() hides document.querySelector('.button') -->
-        <button class="button" onclick="revealLetter(); document.getElementById('letter').classList.add('expanded');" aria-label="Open letter">Open Letter</button>
-      </div>
-    </div>
-  </div>
-<!--New-->
-
-
+<a class="archive-btn" id="archives-link" href="archives.html" aria-label="Open Archives">Take me to the Archives</a>
   
-
   <audio id="celestial-audio" preload="auto"></audio>
 <script src="scripts/main.js"></script>
 </body>
