@@ -9,6 +9,11 @@ const ASSETS = [
   './assets/Theme-of-The-Celestial-Queen-II.mp3',
   './assets/Theme-of-The-Celestial-Queen-III.mp3',
   './assets/Final-Celestial-Symphony.mp3',
+  './archives.html',
+  './assets/Akashic-Theme-I.mp3',
+  './assets/Akashic-Theme-II.mp3',
+  './assets/Akashic-Theme-III.mp3',
+  './assets/Akashic-Finale.mp3',
   'https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap' // optional
 ];
 
