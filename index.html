@@ -134,45 +134,43 @@
 
 
     
-    /* ADD INSIDE <style> in index.html (near other button styles) */
+    /* ADD into your existing <style> */
 .archive-btn {
-  margin-top: 18px;
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
   display: inline-block;
   background: linear-gradient(90deg,#ffd6ec,#ffb0da);
   color: #330022;
   padding: 14px 20px;
-  border-radius: 14px;
+  border-radius: 16px;
   text-decoration: none;
   font-weight: 800;
   font-size: 1.05rem;
-  box-shadow: 0 14px 40px rgba(255,105,180,0.16);
+  box-shadow: 0 18px 44px rgba(255,105,180,0.16);
   transition: transform .12s ease, opacity .18s ease, box-shadow .18s ease;
-  z-index: 4;
+  z-index: 10001;
   text-align:center;
 }
 
-/* "Disabled" visual state — visible but not clickable until code entered */
+/* visible-but-disabled state (cannot be clicked until correct code entered) */
 .archive-btn.disabled {
-  opacity: 0.6;
-  pointer-events: none; /* prevent clicks when disabled */
+  opacity: 0.68;
+  pointer-events: none;
   filter: saturate(0.9) grayscale(0.02);
   box-shadow: 0 8px 20px rgba(0,0,0,0.10);
 }
 
-/* subtle pulse to draw attention when enabled */
+/* enabled hover */
 .archive-btn:not(.disabled):hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 50px rgba(255,105,180,0.18);
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 26px 64px rgba(255,105,180,0.20);
 }
 
-/* existing sibling rule still hides the archive button when the letter is revealed */
-.letter.reveal ~ .archive-btn,
-.letter.show ~ .archive-btn,
-.letter.expanded ~ .archive-btn {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity .18s ease, transform .18s ease;
+/* for very small screens reduce width */
+@media (max-width:420px) {
+  .archive-btn { padding: 12px 16px; font-size: 0.95rem; bottom: 14px; }
 }
 
 
