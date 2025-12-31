@@ -134,7 +134,6 @@
 
 
     
-/* ARCHIVES button — top-centered by default; moves to top-right and becomes 🌙 when .letter.expanded */
 .archive-btn {
   position: fixed;
   top: 18px;
@@ -152,8 +151,8 @@
   text-decoration: none;
   text-align: center;
   box-shadow: 0 18px 44px rgba(255,105,180,0.16);
-  z-index: 10001;
-  transition: all .18s ease;
+  z-index: 99999; /* very high to stay above other layers */
+  transition: all .22s cubic-bezier(.2,.8,.2,1);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -175,8 +174,8 @@
   box-shadow: 0 26px 64px rgba(255,105,180,0.20);
 }
 
-/* When the letter is expanded, move the button to top-right and swap to icon only */
-.letter.expanded ~ .archive-btn {
+/* When JS adds .moved to the archive button, move it to top-right and swap to icon-only */
+.archive-btn.moved {
   left: auto;
   right: 18px;
   top: 18px;
@@ -187,16 +186,15 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
-/* show icon, hide text when letter expanded */
-.letter.expanded ~ .archive-btn .archive-icon { display: inline-block; }
-.letter.expanded ~ .archive-btn .archive-label { display: none; }
+/* show icon, hide text when moved */
+.archive-btn.moved .archive-icon { display: inline-block; }
+.archive-btn.moved .archive-label { display: none; }
 
 /* small-screen adjustments */
 @media (max-width:420px){
   .archive-btn { padding: 10px 14px; font-size: 0.95rem; top: 14px; }
-  .letter.expanded ~ .archive-btn { right: 12px; top: 12px; padding: 8px; }
+  .archive-btn.moved { right: 12px; top: 12px; padding: 8px; }
 }
-
 
 
 
@@ -399,7 +397,7 @@
   <a id="archives-link" class="archive-btn disabled" aria-disabled="true" role="button" aria-label="Open Archives">
   <span class="archive-icon" aria-hidden="true">🌙</span>
   <span class="archive-label">Take me to the Archives</span>
-  </a>
+</a>
   
   <button id="font-toggle" title="Change font">💖</button>
   <button id="music-toggle" title="Toggle music">🎶</button>
