@@ -115,6 +115,76 @@
      text-align: center;
    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    /* ADD INSIDE <style> in index.html (near other button styles) */
+.archive-btn {
+  margin-top: 18px;
+  display: inline-block;
+  background: linear-gradient(90deg,#ffd6ec,#ffb0da);
+  color: #330022;
+  padding: 14px 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 14px 40px rgba(255,105,180,0.16);
+  transition: transform .12s ease, opacity .18s ease, box-shadow .18s ease;
+  z-index: 4;
+  text-align:center;
+}
+
+/* "Disabled" visual state — visible but not clickable until code entered */
+.archive-btn.disabled {
+  opacity: 0.6;
+  pointer-events: none; /* prevent clicks when disabled */
+  filter: saturate(0.9) grayscale(0.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+}
+
+/* subtle pulse to draw attention when enabled */
+.archive-btn:not(.disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(255,105,180,0.18);
+}
+
+/* existing sibling rule still hides the archive button when the letter is revealed */
+.letter.reveal ~ .archive-btn,
+.letter.show ~ .archive-btn,
+.letter.expanded ~ .archive-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+
+
+
+
+
+
+
+
+
+    
    /* PREVIEW TEXT */
    .preview-text {
      font-size: clamp(1rem, 3vw, 2rem) !important;
@@ -438,10 +508,20 @@
         Eternally yours,<br/>
         Honey
       </div>
+
+
+
+
+        
+        <a id="archives-link" class="archive-btn disabled" aria-disabled="true">Take me to the Archives</a>
+       
+
+
+
+        
+        
     </div>
   </div>
-
-<a class="archive-btn" id="archives-link" href="archives.html" aria-label="Open Archives">Take me to the Archives</a>
   
   <audio id="celestial-audio" preload="auto"></audio>
 <script src="scripts/main.js"></script>
