@@ -131,51 +131,81 @@
 
 
 
-
-
-    
-/* moved = top-right icon-only, no pink border/background/shadow */
-.archive-btn.moved {
-  left: auto;             /* ensure left isn't used */
-  right: 18px;            /* pinned to right edge */
+/* Archive button: pinned to top-right by default, emoji-only when "moved" */
+.archive-btn {
+  position: fixed;
   top: 18px;
+  right: 18px;        /* PIN TO RIGHT EDGE */
+  left: auto;         /* ensure left isn't used */
+  transform: none;    /* remove translateX(-50%) */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(90deg,#ffd6ec,#ffb0da);
+  color: #330022;
+  font-weight: 800;
+  font-size: 1.02rem;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 14px 36px rgba(255,105,180,0.14);
+  z-index: 99999;
+  transition: all .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* label / icon slots */
+.archive-label { display: inline; line-height: 1; }
+.archive-icon { display: inline-block; line-height: 1; font-size: 1.15rem; }
+
+/* disabled look */
+.archive-btn.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  filter: saturate(0.9) grayscale(0.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* moved = emoji-only, no pink border/shadow */
+.archive-btn.moved {
+  right: 18px;            /* still pinned to right */
+  top: 18px;
+  left: auto;
   transform: none;
   padding: 6px;           /* small tappable area */
-  width: auto;
   border-radius: 50%;
   background: transparent; /* remove pink gradient */
   box-shadow: none;        /* remove shadow */
   border: none;
-  outline: none;
-  backdrop-filter: none;
-  z-index: 99999;          /* keep on top */
 }
 
-/* show only the icon, keep the emoji size natural */
+/* show icon, hide label when moved */
 .archive-btn.moved .archive-icon {
+  font-size: 1.6rem; /* adjust size of emoji */
   display: inline-block;
-  font-size: 1.6rem;     /* adjust if you want it larger/smaller */
-  line-height: 1;
-  vertical-align: middle;
 }
-
-/* hide any label completely (if present) */
 .archive-btn.moved .archive-label {
   display: none;
 }
 
-/* keep hover flat and remove lifts */
+/* keep flat when hovered in moved state */
 .archive-btn.moved:hover,
 .archive-btn.moved:active {
   transform: none;
   box-shadow: none;
 }
 
-/* small-screen tweaks for touch targets */
+/* small-screen tweaks */
 @media (max-width:420px){
+  .archive-btn { right: 12px; top: 12px; padding: 8px; font-size: 0.95rem; }
   .archive-btn.moved { right: 12px; top: 12px; padding: 8px; }
-  .archive-btn.moved .archive-icon { font-size: 1.4rem; }
+  .archive-btn.moved .archive-icon { font-size: 1.45rem; }
 }
+
+
+
+    
 
 
 
