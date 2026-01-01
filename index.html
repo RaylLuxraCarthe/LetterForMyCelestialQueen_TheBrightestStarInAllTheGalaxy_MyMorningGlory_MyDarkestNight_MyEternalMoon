@@ -134,46 +134,48 @@
 
 
     
-/* icon-only moved state: no pink border/background/shadow — just the emoji */
+/* moved = top-right icon-only, no pink border/background/shadow */
 .archive-btn.moved {
-  left: 50px;
-  right: 18px;
+  left: auto;             /* ensure left isn't used */
+  right: 18px;            /* pinned to right edge */
   top: 18px;
   transform: none;
-  padding: 6px;               /* small hit area; increase if you want larger tappable area */
+  padding: 6px;           /* small tappable area */
   width: auto;
-  border-radius: 50%;        /* keeps hit-area circular if you prefer; set 0 for square */
-  background: transparent;   /* remove pink gradient */
-  box-shadow: none;          /* remove shadow */
-  border: none;              /* remove border */
+  border-radius: 50%;
+  background: transparent; /* remove pink gradient */
+  box-shadow: none;        /* remove shadow */
+  border: none;
   outline: none;
   backdrop-filter: none;
+  z-index: 99999;          /* keep on top */
 }
 
-/* show only the icon, hide the text label */
+/* show only the icon, keep the emoji size natural */
 .archive-btn.moved .archive-icon {
   display: inline-block;
-  font-size: 5rem;
+  font-size: 1.6rem;     /* adjust if you want it larger/smaller */
   line-height: 1;
   vertical-align: middle;
 }
+
+/* hide any label completely (if present) */
 .archive-btn.moved .archive-label {
   display: none;
 }
 
-/* keep hover/active flat (no lift or shadow) */
+/* keep hover flat and remove lifts */
 .archive-btn.moved:hover,
 .archive-btn.moved:active {
   transform: none;
   box-shadow: none;
 }
 
-/* small-screen tweaks */
+/* small-screen tweaks for touch targets */
 @media (max-width:420px){
-  .archive-btn.moved { right: 12px; top: 12px; padding: 6px; }
-  .archive-btn.moved .archive-icon { font-size: 2rem; }
+  .archive-btn.moved { right: 12px; top: 12px; padding: 8px; }
+  .archive-btn.moved .archive-icon { font-size: 1.4rem; }
 }
-
 
 
 
@@ -371,9 +373,9 @@
 </head>
 <body>
   
-  <a id="archives-link" class="archive-btn disabled" aria-disabled="true" role="button" aria-label="Open Archives">
-  <span class="archive-icon" aria-hidden="true">🌙</span
-  </a>
+<a id="archives-link" class="archive-btn disabled" aria-disabled="true" role="button" aria-label="Open Archives">
+  <span class="archive-icon" aria-hidden="true">🌙</span>
+</a>
   
   <button id="font-toggle" title="Change font">💖</button>
   <button id="music-toggle" title="Toggle music">🎶</button>
