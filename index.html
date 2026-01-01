@@ -131,13 +131,13 @@
 
 
 
-/* Archive button: pinned to top-right by default, emoji-only when "moved" */
+/* Pin archive button permanently to the right; icon-only on moved state */
 .archive-btn {
   position: fixed;
   top: 18px;
   right: 18px;        /* PIN TO RIGHT EDGE */
-  left: auto;         /* ensure left isn't used */
-  transform: none;    /* remove translateX(-50%) */
+  left: auto;         /* ensure no left-based centering */
+  transform: none;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -180,16 +180,16 @@
   border: none;
 }
 
-/* show icon, hide label when moved */
+/* show only the icon when moved */
 .archive-btn.moved .archive-icon {
-  font-size: 1.6rem; /* adjust size of emoji */
+  font-size: 1.6rem; /* adjust emoji size */
   display: inline-block;
 }
 .archive-btn.moved .archive-label {
   display: none;
 }
 
-/* keep flat when hovered in moved state */
+/* keep flat appearance when hovered in moved state */
 .archive-btn.moved:hover,
 .archive-btn.moved:active {
   transform: none;
@@ -202,7 +202,6 @@
   .archive-btn.moved { right: 12px; top: 12px; padding: 8px; }
   .archive-btn.moved .archive-icon { font-size: 1.45rem; }
 }
-
 
 
     
