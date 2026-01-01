@@ -135,8 +135,8 @@
 .archive-btn {
   position: fixed;
   top: 18px;
-  right: 18px;        /* PIN TO RIGHT EDGE */
-  left: auto;         /* ensure no left-based centering */
+  right: 18px;
+  left: auto;
   transform: none;
   display: inline-flex;
   align-items: center;
@@ -152,7 +152,6 @@
   box-shadow: 0 14px 36px rgba(255,105,180,0.14);
   z-index: 99999;
   transition: all .18s ease;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* label / icon slots */
@@ -163,45 +162,20 @@
 .archive-btn.disabled {
   opacity: 0.7;
   pointer-events: none;
-  filter: saturate(0.9) grayscale(0.02);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-/* moved = emoji-only, no pink border/shadow */
+/* moved = emoji-only, no border/shadow */
 .archive-btn.moved {
-  right: 18px;            /* still pinned to right */
-  top: 18px;
-  left: auto;
-  transform: none;
-  padding: 6px;           /* small tappable area */
+  padding: 6px;           /* smaller tappable area, still accessible */
   border-radius: 50%;
-  background: transparent; /* remove pink gradient */
-  box-shadow: none;        /* remove shadow */
+  background: transparent;
+  box-shadow: none;
   border: none;
 }
 
-/* show only the icon when moved */
-.archive-btn.moved .archive-icon {
-  font-size: 1.6rem; /* adjust emoji size */
-  display: inline-block;
-}
-.archive-btn.moved .archive-label {
-  display: none;
-}
-
-/* keep flat appearance when hovered in moved state */
-.archive-btn.moved:hover,
-.archive-btn.moved:active {
-  transform: none;
-  box-shadow: none;
-}
-
-/* small-screen tweaks */
-@media (max-width:420px){
-  .archive-btn { right: 12px; top: 12px; padding: 8px; font-size: 0.95rem; }
-  .archive-btn.moved { right: 12px; top: 12px; padding: 8px; }
-  .archive-btn.moved .archive-icon { font-size: 1.45rem; }
-}
+/* show only icon when moved */
+.archive-btn.moved .archive-icon { font-size: 1.6rem; display:inline-block; }
+.archive-btn.moved .archive-label { display:none; }
 
 
     
